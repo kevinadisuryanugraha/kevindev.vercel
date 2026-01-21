@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portofolio Kevin Adisurya Nugraha - Junior Full-Stack Developer"
+    />
+    <title>Kevin Adisurya N. | Full-Stack Developer</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts (Poppins) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Swiper CSS (Untuk Slider Sertifikat Professional) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          >Kevin<span style="color: var(--secondary-color)">.Dev</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Keahlian</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portofolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#experience">Pengalaman</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#organization">Organisasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#certificates">Sertifikat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Kontak</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION (REDESIGNED) -->
+    <section id="home">
+      <!-- Glow Effect Background -->
+      <div class="hero-glow-bg"></div>
+
+      <div class="container position-relative z-1">
+        <div class="row align-items-center flex-column-reverse flex-lg-row">
+          <!-- Text Column -->
+          <div class="col-lg-7 mt-5 mt-lg-0 text-center text-lg-start">
+            <div class="hero-subtitle-badge">
+              <i class="fas fa-code me-2"></i>Full-Stack Developer
+            </div>
+            <h1 class="hero-title mb-3">
+              Halo, Saya <br />
+              <span class="text-gradient">Kevin Adisurya</span>
+            </h1>
+            <h3
+              class="h4 mb-4"
+              style="color: var(--secondary-color); font-weight: 500"
+            >
+              Saya seorang <span class="typing-text" id="typewriter"></span>
+            </h3>
+            <p class="hero-description mx-auto mx-lg-0">
+              Lulusan SMK RPL dan Mahasiswa Ilmu Komputer Universitas Pertamina
+              yang berdedikasi. Spesialis dalam membangun website modern dengan
+              <strong>Laravel</strong>, <strong>CodeIgniter</strong>, dan
+              teknologi web terkini.
+            </p>
+
+            <div
+              class="d-flex gap-3 justify-content-center justify-content-lg-start hero-buttons-wrapper"
+            >
+              <a href="#contact" class="btn btn-custom-primary shadow-lg">
+                Hubungi Saya <i class="fas fa-paper-plane ms-2"></i>
+              </a>
+              <a
+                href="#"
+                class="btn btn-custom-outline"
+                onclick="alert('Fitur download CV akan tersedia segera!')"
+              >
+                <i class="fas fa-download me-2"></i>Unduh CV
+              </a>
+            </div>
+
+            <!-- Stats / Tech Stack Mini -->
+            <div
+              class="mt-5 d-flex gap-4 justify-content-center justify-content-lg-start align-items-center opacity-75 hero-stats-wrapper"
+            >
+              <div class="d-flex align-items-center gap-2">
+                <i class="fab fa-laravel fa-2x text-danger"></i>
+                <span class="small fw-bold text-muted"
+                  >Laravel<br />Expert</span
+                >
+              </div>
+              <div class="vr"></div>
+              <div class="d-flex align-items-center gap-2">
+                <i
+                  class="fab fa-bootstrap fa-2x text-primary"
+                  style="color: #7952b3 !important"
+                ></i>
+                <span class="small fw-bold text-muted"
+                  >Bootstrap<br />Master</span
+                >
+              </div>
+              <div class="vr"></div>
+              <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-database fa-2x text-secondary"></i>
+                <span class="small fw-bold text-muted"
+                  >MySQL<br />Database</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Image Column (3D Composition) -->
+          <div class="col-lg-5 text-center">
+            <div class="hero-visual">
+              <div class="hero-img-wrapper">
+                <!-- Main Image -->
+                <img
+                  src="assets/image/profil_formal.png"
+                  alt="Kevin Adisurya"
+                  class="hero-main-img"
+                />
+
+                <!-- Floating Elements -->
+                <!-- Icon 1: Laravel -->
+                <div class="floating-icon icon-laravel">
+                  <i class="fab fa-laravel"></i>
+                </div>
+                <!-- Icon 2: PHP -->
+                <div class="floating-icon icon-php">
+                  <i class="fab fa-php"></i>
+                </div>
+                <!-- Icon 3: Code -->
+                <div class="floating-icon icon-code">
+                  <i class="fas fa-code"></i>
+                </div>
+
+                <!-- Floating Card: Certified -->
+                <div class="floating-card cert">
+                  <div class="icon-box">
+                    <i class="fas fa-certificate"></i>
+                  </div>
+                  <div class="text-start">
+                    <h6 class="mb-0 fw-bold text-dark">BNSP Certified</h6>
+                    <small class="text-muted">Web Programming</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-white">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-subtitle">Informasi Diri</span>
+          <h2>Tentang Saya</h2>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-lg-5 reveal">
+            <img
+              src="assets/image/DSC_1889.JPG"
+              alt="Working"
+              class="img-fluid rounded-4 shadow-lg"
+            />
+          </div>
+          <div class="col-lg-7 mt-4 mt-lg-0 ps-lg-5 reveal">
+            <h3 class="fw-bold mb-3">Junior Web Developer</h3>
+            <p class="text-muted">
+              Saya adalah pengembang web junior yang berdomisili di Jakarta,
+              Indonesia. Saat ini menempuh pendidikan S1 Ilmu Komputer di
+              Universitas Pertamina (Semester 1) setelah lulus dari SMKN 10
+              Jakarta jurusan Rekayasa Perangkat Lunak.
+            </p>
+            <p class="text-muted">
+              Saya memiliki pengalaman kerja selama 6 bulan dan telah
+              menyelesaikan pelatihan intensif Laravel 12 yang didukung oleh
+              Pusat Pelatihan Kerja Daerah Jakarta Pusat. Saya berkomitmen
+              tinggi untuk mengubah konsep menjadi solusi perangkat lunak yang
+              fungsional.
+            </p>
+
+            <div class="row mt-4 g-3">
+              <!-- Email Card -->
+              <div class="col-md-4">
+                <a
+                  href="mailto:habeelkevin@gmail.com"
+                  class="text-decoration-none"
+                >
+                  <div class="contact-info-card">
+                    <div
+                      class="contact-icon-box"
+                      style="
+                        background: linear-gradient(
+                          135deg,
+                          #667eea 0%,
+                          #764ba2 100%
+                        );
+                      "
+                    >
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-info-text">
+                      <h6 class="mb-1 fw-bold text-dark">Email</h6>
+                      <span class="text-muted small"
+                        >habeelkevin@gmail.com</span
+                      >
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- GitHub Card -->
+              <div class="col-md-4">
+                <a
+                  href="https://github.com/kevinadisuryanugraha"
+                  target="_blank"
+                  class="text-decoration-none"
+                >
+                  <div class="contact-info-card">
+                    <div
+                      class="contact-icon-box"
+                      style="
+                        background: linear-gradient(
+                          135deg,
+                          #24292e 0%,
+                          #586069 100%
+                        );
+                      "
+                    >
+                      <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-info-text">
+                      <h6 class="mb-1 fw-bold text-dark">GitHub</h6>
+                      <span class="text-muted small">kevinadisuryanugraha</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Phone/WA Card -->
+              <div class="col-md-4">
+                <a
+                  href="https://wa.me/6289616682955"
+                  target="_blank"
+                  class="text-decoration-none"
+                >
+                  <div class="contact-info-card">
+                    <div
+                      class="contact-icon-box"
+                      style="
+                        background: linear-gradient(
+                          135deg,
+                          #25d366 0%,
+                          #128c7e 100%
+                        );
+                      "
+                    >
+                      <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-info-text">
+                      <h6 class="mb-1 fw-bold text-dark">WhatsApp</h6>
+                      <span class="text-muted small">+62 896 1668 2955</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section
+      id="skills"
+      class="section-padding"
+      style="background-color: #f8fafc"
+    >
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-subtitle">Kemampuan Teknis & Non-Teknis</span>
+          <h2>Keahlian Saya</h2>
+        </div>
+
+        <div class="row reveal">
+          <!-- Backend -->
+          <div class="col-md-6 mb-4">
+            <div class="card card-custom p-4">
+              <h4 class="fw-bold mb-4 text-primary">
+                <i class="fas fa-server me-2"></i>Backend
+              </h4>
+              <div class="d-flex flex-wrap">
+                <div class="skill-badge">
+                  <i class="fab fa-php text-primary"></i> PHP Native
+                </div>
+                <div class="skill-badge">
+                  <i class="fab fa-laravel text-danger"></i> Laravel 12
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-fire text-warning"></i> CodeIgniter 3
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-database text-info"></i> MySQL
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-table text-secondary"></i> SQLite
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frontend -->
+          <div class="col-md-6 mb-4">
+            <div class="card card-custom p-4">
+              <h4 class="fw-bold mb-4 text-primary">
+                <i class="fas fa-laptop-code me-2"></i>Frontend
+              </h4>
+              <div class="d-flex flex-wrap">
+                <div class="skill-badge">
+                  <i
+                    class="fab fa-html5 text-orange"
+                    style="color: #e34c26"
+                  ></i>
+                  HTML5
+                </div>
+                <div class="skill-badge">
+                  <i class="fab fa-css3-alt text-primary"></i> CSS3
+                </div>
+                <div class="skill-badge">
+                  <i class="fab fa-js text-warning"></i> JavaScript
+                </div>
+                <div class="skill-badge">
+                  <i
+                    class="fab fa-bootstrap text-purple"
+                    style="color: #7952b3"
+                  ></i>
+                  Bootstrap 5
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-wind text-info"></i> Tailwind CSS
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools & Others -->
+          <div class="col-md-6 mb-4">
+            <div class="card card-custom p-4">
+              <h4 class="fw-bold mb-4 text-primary">
+                <i class="fas fa-tools me-2"></i>Tools & Lainnya
+              </h4>
+              <div class="d-flex flex-wrap">
+                <div class="skill-badge">
+                  <i class="fab fa-git-alt text-danger"></i> Git
+                </div>
+                <div class="skill-badge">
+                  <i class="fab fa-github"></i> GitHub
+                </div>
+                <div class="skill-badge">
+                  <i class="fab fa-figma text-purple"></i> Figma
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-mobile-alt text-primary"></i> Flutter
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-language"></i> English (Basic)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soft Skills -->
+          <div class="col-md-6 mb-4">
+            <div class="card card-custom p-4">
+              <h4 class="fw-bold mb-4 text-primary">
+                <i class="fas fa-user-check me-2"></i>Soft Skills
+              </h4>
+              <div class="d-flex flex-wrap">
+                <div class="skill-badge">
+                  <i class="fas fa-users-cog text-success"></i> Leadership
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-lightbulb text-warning"></i> Problem Solving
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-users text-info"></i> Teamwork
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-clock text-danger"></i> Disiplin & Jujur
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-hands-helping text-primary"></i> Tanggung
+                  Jawab
+                </div>
+                <div class="skill-badge">
+                  <i class="fas fa-check-circle text-secondary"></i> Komitmen
+                  Tinggi
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-padding bg-white">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-subtitle">Proyek Terkini</span>
+          <h2>Portofolio</h2>
+        </div>
+
+        <div class="row g-4 reveal">
+          <!-- Project 1 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="card card-custom h-100">
+              <img src="assets/image/login.png" alt="FastLaundry" />
+              <div class="card-body p-4">
+                <div class="project-tech mb-3">
+                  <span>Laravel 12</span>
+                  <span>MySQL</span>
+                  <span>Bootstrap</span>
+                </div>
+                <h4 class="card-title fw-bold">Management Laundry</h4>
+                <p class="card-text text-muted small">
+                  Platform layanan laundry profesional yang fungsional dan
+                  efisien. Sistem backend yang optimal dalam pemrosesan data
+                  menggunakan DataTables.
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0 p-4 pt-0">
+                <a
+                  href="https://github.com/kevinadisuryanugraha/Management_Laundry_Application"
+                  class="btn btn-sm btn-outline-primary w-100"
+                  >Lihat Detail <i class="fas fa-arrow-right ms-2"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="card card-custom h-100">
+              <img src="assets/image/yayasan_cms.png" alt="yayasan_cms" />
+              <div class="card-body p-4">
+                <div class="project-tech mb-3">
+                  <span>PHP Native</span>
+                  <span>MySQL</span>
+                  <span>Bootstrap</span>
+                </div>
+                <h4 class="card-title fw-bold">
+                  Content Management System Yayasan
+                </h4>
+                <p class="card-text text-muted small">
+                  Sistem manajemen konten Website Yayasan berbasis web yang
+                  fungsional. Sistem ini dirancang untuk memudahkan pengelolaan
+                  konten website yayasan dengan fitur-fitur yang lengkap.
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0 p-4 pt-0">
+                <a
+                  href="https://github.com/kevinadisuryanugraha/Yayasan_CMS"
+                  class="btn btn-sm btn-outline-primary w-100"
+                  >Lihat Detail <i class="fas fa-arrow-right ms-2"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="card card-custom h-100">
+              <img src="assets/image/kasir.png" alt="POS System" />
+              <div class="card-body p-4">
+                <div class="project-tech mb-3">
+                  <span>Laravel 12</span>
+                  <span>MySQL</span>
+                  <span>Bootstrap</span>
+                </div>
+                <h4 class="card-title fw-bold">POS System</h4>
+                <p class="card-text text-muted small">
+                  Aplikasi Web Point of Sales (POS) yang dibangun selama
+                  pelatihan BNSP Web Programming menggunakan framework PHP
+                  terbaru.
+                </p>
+              </div>
+              <div class="card-footer bg-white border-0 p-4 pt-0">
+                <a
+                  href="https://github.com/kevinadisuryanugraha/Point_of_Sales_Application"
+                  class="btn btn-sm btn-outline-primary w-100"
+                  >Lihat Detail <i class="fas fa-arrow-right ms-2"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Education Section -->
+    <section
+      id="experience"
+      class="section-padding"
+      style="background-color: #f8fafc"
+    >
+      <div class="container">
+        <div class="row">
+          <!-- Experience -->
+          <div class="col-lg-6 mb-5 mb-lg-0 reveal">
+            <div class="section-title text-start">
+              <span class="section-subtitle">Jejak Karir</span>
+              <h2>Pengalaman Kerja</h2>
+            </div>
+            <div class="timeline mt-5">
+              <div class="timeline-item">
+                <span class="timeline-date">Sep 2024 - Feb 2025</span>
+                <h5 class="fw-bold">Junior Web Developer</h5>
+                <p class="text-primary mb-2">
+                  PT Kurma Media | Depok, Jawa Barat
+                </p>
+                <ul class="text-muted small ps-3">
+                  <li>
+                    Merancang dan mengimplementasikan skema proyek full-stack
+                    untuk platform layanan profesional.
+                  </li>
+                  <li>
+                    Mengembangkan backend sistem menggunakan CodeIgniter 3,
+                    MySQL, dan SQLite.
+                  </li>
+                  <li>Menyelesaikan proyek akhir Website FastLaundry.</li>
+                  <li>
+                    Berpartisipasi aktif dalam kolaborasi tim profesional.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education & Certification -->
+          <div class="col-lg-6 reveal">
+            <div class="section-title text-start">
+              <span class="section-subtitle">Akademik</span>
+              <h2>Pendidikan</h2>
+            </div>
+            <div class="timeline mt-5">
+              <div class="timeline-item">
+                <span class="timeline-date">Sekarang (Semester 1)</span>
+                <h5 class="fw-bold">S1 Ilmu Komputer</h5>
+                <p class="text-primary mb-0">Universitas Pertamina</p>
+              </div>
+              <div class="timeline-item">
+                <span class="timeline-date">2022 - 2025</span>
+                <h5 class="fw-bold">Rekayasa Perangkat Lunak</h5>
+                <p class="text-primary mb-0">SMKN 10 Jakarta</p>
+                <small class="text-muted"
+                  >Lulusan Kompeten dengan Sertifikasi BNSP Junior Coder.</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Organization Section (New) -->
+    <section id="organization" class="section-padding bg-white">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-subtitle">Keterlibatan Sosial</span>
+          <h2>Pengalaman Organisasi</h2>
+        </div>
+        <div class="row justify-content-center reveal">
+          <!-- Organization 1: Karang Taruna -->
+          <div class="col-md-6 col-lg-5 mb-4">
+            <div class="card org-card p-4">
+              <div class="d-flex align-items-start">
+                <div class="me-3">
+                  <div class="org-icon-box">
+                    <i class="fas fa-users"></i>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1">Karang Taruna</h5>
+                  <p class="text-muted small mb-2">
+                    <i class="far fa-calendar-alt me-1"></i> 2025 - Sekarang
+                  </p>
+                  <span class="badge bg-success mb-2">Anggota Aktif</span>
+                  <p class="text-muted small">
+                    Turut aktif mengikuti kegiatan kepemudaan dan sosial di
+                    lingkungan daerah, serta berkontribusi dalam berbagai
+                    program kerja kemasyarakatan.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Organization 2: HIMALKOM Univ. Pertamina -->
+          <div class="col-md-6 col-lg-5 mb-4">
+            <div
+              class="card org-card p-4"
+              style="border-left-color: var(--accent-color)"
+            >
+              <div class="d-flex align-items-start">
+                <div class="me-3">
+                  <div class="org-icon-box" style="color: var(--accent-color)">
+                    <i class="fas fa-university"></i>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1">PEMIRA HIMPUNAN ILMU KOMPUTER</h5>
+                  <p class="text-muted small mb-2">
+                    <i class="fas fa-map-marker-alt me-1"></i> Universitas
+                    Pertamina
+                  </p>
+                  <span class="badge bg-info text-white mb-2"
+                    >Staff Divisi PDD</span
+                  >
+                  <p class="text-muted small">
+                    Turut aktif dalam kepanitiaan event Pemilihan Raya (PEMIRA)
+                    Himpunan Mahasiswa Ilmu Komputer. Bertanggung jawab dalam
+                    divisi Publikasi, Dekorasi, dan Dokumentasi.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates Section (SWIPER JS Grid 2 Baris) -->
+    <section
+      id="certificates"
+      class="section-padding"
+      style="background-color: #f8fafc"
+    >
+      <div class="container reveal">
+        <div class="section-title">
+          <span class="section-subtitle">Lisensi & Sertifikasi</span>
+          <h2>Sertifikat Profesional</h2>
+          <p class="text-muted small mt-2">
+            Geser untuk melihat lebih banyak
+            <i class="fas fa-arrow-right ms-1"></i>
+          </p>
+        </div>
+
+        <!-- Swiper Container -->
+        <div class="masonry-row">
+          <!-- Item 1: BNSP Web Programming -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal1"
+            >
+              <img
+                src="assets/image/sertif_image/bnsp_ppkd_page-0001.jpg"
+                alt="Web Programming"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Web Programming (PPKD)</h6>
+              <div class="cert-meta">
+                <span class="cert-badge">BNSP</span>
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: BNSP Junior Coder -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal2"
+            >
+              <img
+                src="assets/image/sertif_image/bnsp_smk_page-0001.jpg"
+                alt="Junior Coder"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Junior Coder (SMK)</h6>
+              <div class="cert-meta">
+                <span class="cert-badge">BNSP</span>
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: Google Cloud Arcade -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal3"
+            >
+              <img
+                src="assets/image/sertif_image/google-cloud-arcade-fasilitator-2025-program-overview-deep-dive-certificate_page-0001.jpg"
+                alt="Google Cloud"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Google Cloud Arcade Facilitator</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #b45309;
+                    background: #fffbeb;
+                    border-color: #fef3c7;
+                  "
+                  >Google</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4: Sekolah.mu -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal4"
+            >
+              <img
+                src="assets/image/sertif_image/sertifikat-Siswa-sekolahmu--page-00001 (1).jpg"
+                alt="Sekolah.mu"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Pelatihan Pengembangan Siswa</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #0369a1;
+                    background: #e0f2fe;
+                    border-color: #bae6fd;
+                  "
+                  >Sekolah.mu</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5: Webinar IPB -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal5"
+            >
+              <img
+                src="assets/image/sertif_image/Sertifikat Webinar IPB - Kreditplus 2025_page-0001.jpg"
+                alt="IPB Webinar"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Webinar IPB Kreditplus</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #166534;
+                    background: #dcfce7;
+                    border-color: #bbf7d0;
+                  "
+                  >IPB Univ</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 6: Kompetensi Teknis AKS (X6NS) -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal6"
+            >
+              <img
+                src="assets/image/sertif_image/sertifikat-AKS-25X6NS_page-0001.jpg"
+                alt="AKS"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Kompetensi Software Engineering</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #7c3aed;
+                    background: #f3e8ff;
+                    border-color: #e9d5ff;
+                  "
+                  >AKS</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 7: Kurma Media -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal7"
+            >
+              <img
+                src="assets/image/sertif_image/sertif_kurma_page-0001.jpg"
+                alt="Kurma Media"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Sertifikat PKL Kurma Media</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #dc2626;
+                    background: #fef2f2;
+                    border-color: #fecaca;
+                  "
+                  >Kurma</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 8: Kompetensi Teknis AKS (25ALK0) -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal8"
+            >
+              <img
+                src="assets/image/sertif_image/sertifikat-AKS-25ALK0_page-0001.jpg"
+                alt="AKS"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Sertifikat Kompetensi Kelulusan</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #0891b2;
+                    background: #ecfeff;
+                    border-color: #cffafe;
+                  "
+                  >AKS</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 9: PPKD Jakarta -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal9"
+            >
+              <img
+                src="assets/image/sertif_image/sertif_ppkd_page-0001.jpg"
+                alt="PPKD"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Pelatihan PPKD Jakarta</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #1d4ed8;
+                    background: #dbeafe;
+                    border-color: #bfdbfe;
+                  "
+                  >PPKD</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 10: ONLK -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal10"
+            >
+              <img
+                src="assets/image/sertif_image/ONLK1KGYTP_page-0001.jpg"
+                alt="ONLK"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">
+                Program Microsoft Elevate Training Center
+              </h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #ea580c;
+                    background: #fff7ed;
+                    border-color: #fed7aa;
+                  "
+                  >ONLK</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 11: Personal 1 (Kevin Adisurya) -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal11"
+            >
+              <img
+                src="assets/image/sertif_image/Kevin Adisurya Nugraha_page-0001.jpg"
+                alt="Sertifikat"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Peserta Guest Lecture</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #059669;
+                    background: #d1fae5;
+                    border-color: #a7f3d0;
+                  "
+                  >Pertamina</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 12: Personal 2 (Kevin Adisurya 2 - GDG) -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal12"
+            >
+              <img
+                src="assets/image/sertif_image/KEVIN_ADISURYA_NUGRAHA_(2)_page-0001.jpg"
+                alt="GDG Bogor"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Sertifikat Kehadiran Event GDG Bogor</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #4338ca;
+                    background: #e0e7ff;
+                    border-color: #c7d2fe;
+                  "
+                  >GDG</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 13: PKM 2026 -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal13"
+            >
+              <img
+                src="assets/image/sertif_image/Sertifikat Peserta Sosialisasi PKM 2026_page-0001.jpg"
+                alt="PKM 2026"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">Peserta Sosialisasi PKM 2026</h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #be185d;
+                    background: #fce7f3;
+                    border-color: #fbcfe8;
+                  "
+                  >PKM</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2026</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificate Modals (Lightboxes) -->
+    <!-- Modal 1 -->
+    <div class="modal fade" id="certModal1" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/bnsp_ppkd_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 2 -->
+    <div class="modal fade" id="certModal2" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/bnsp_smk_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 3 -->
+    <div class="modal fade" id="certModal3" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/google-cloud-arcade-fasilitator-2025-program-overview-deep-dive-certificate_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 4 -->
+    <div class="modal fade" id="certModal4" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/sertifikat-Siswa-sekolahmu--page-00001 (1).jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 5 -->
+    <div class="modal fade" id="certModal5" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/Sertifikat Webinar IPB - Kreditplus 2025_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 6 -->
+    <div class="modal fade" id="certModal6" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/sertifikat-AKS-25X6NS_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 7 -->
+    <div class="modal fade" id="certModal7" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/sertif_kurma_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 8 -->
+    <div class="modal fade" id="certModal8" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/sertifikat-AKS-25ALK0_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 9 -->
+    <div class="modal fade" id="certModal9" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/sertif_ppkd_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 10 -->
+    <div class="modal fade" id="certModal10" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/ONLK1KGYTP_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 11 -->
+    <div class="modal fade" id="certModal11" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/Kevin Adisurya Nugraha_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 12 -->
+    <div class="modal fade" id="certModal12" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/KEVIN_ADISURYA_NUGRAHA_(2)_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 13 -->
+    <div class="modal fade" id="certModal13" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/Sertifikat Peserta Sosialisasi PKM 2026_page-0001.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificate Modals (Lightboxes) -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-white">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-subtitle">Hubungi Saya</span>
+          <h2>Mari Bekerja Sama</h2>
+        </div>
+
+        <div class="row justify-content-center reveal">
+          <div class="col-lg-8">
+            <div class="contact-box">
+              <form id="contactForm" onsubmit="return handleForm(event)">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Nama Lengkap</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Nama Anda"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="email@contoh.com"
+                      required
+                    />
+                  </div>
+                  <div class="col-12 mb-3">
+                    <label class="form-label fw-bold">Subjek</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Tawaran Kerjasama / Project"
+                      required
+                    />
+                  </div>
+                  <div class="col-12 mb-4">
+                    <label class="form-label fw-bold">Pesan</label>
+                    <textarea
+                      class="form-control"
+                      rows="5"
+                      placeholder="Tulis pesan Anda di sini..."
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-custom-primary px-5">
+                      Kirim Pesan <i class="fas fa-paper-plane ms-2"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="text-center mt-5">
+              <p class="mb-3 text-muted">Atau temukan saya di sosial media:</p>
+              <div>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-github"></i
+                ></a>
+                <a href="#" class="social-link"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="mailto:habeelkevin@gmail.com" class="social-link"
+                  ><i class="fas fa-envelope"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p class="mb-0">
+          &copy; 2026 Kevin Adisurya Nugraha. All Rights Reserved.
+        </p>
+        <small>Dibuat dengan HTML, CSS, Bootstrap 5 & Vanilla JS</small>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Native JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
