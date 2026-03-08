@@ -9,6 +9,12 @@
     />
     <title>Kevin Adisurya N. | Full-Stack Developer</title>
 
+    <!-- Performance Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
     <!-- Bootstrap 5 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -35,7 +41,7 @@
 
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+  <body data-bs-spy="scroll" data-bs-target=".navbar">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
@@ -94,7 +100,7 @@
           <!-- Text Column -->
           <div class="col-lg-7 mt-5 mt-lg-0 text-center text-lg-start">
             <div class="hero-subtitle-badge">
-              <i class="fas fa-code me-2"></i>Full-Stack Developer
+              <i class="fas fa-code me-2"></i>Developer With AI
             </div>
             <h1 class="hero-title mb-3">
               Halo, Saya <br />
@@ -129,31 +135,48 @@
             </div>
 
             <!-- Stats / Tech Stack Mini -->
-            <div
-              class="mt-5 d-flex gap-4 justify-content-center justify-content-lg-start align-items-center opacity-75 hero-stats-wrapper"
-            >
-              <div class="d-flex align-items-center gap-2">
-                <i class="fab fa-laravel fa-2x text-danger"></i>
-                <span class="small fw-bold text-muted"
-                  >Laravel<br />Expert</span
+            <div class="hero-tech-strip mt-5">
+              <div class="hero-tech-card">
+                <div
+                  class="hero-tech-icon"
+                  style="background: #eff6ff; color: #2563eb"
                 >
+                  <i class="fas fa-code"></i>
+                </div>
+                <div class="hero-tech-info">
+                  <span class="hero-tech-name">Web Developer</span>
+                  <span class="hero-tech-level">INTERMEDIATE</span>
+                </div>
               </div>
-              <div class="vr"></div>
-              <div class="d-flex align-items-center gap-2">
-                <i
-                  class="fab fa-bootstrap fa-2x text-primary"
-                  style="color: #7952b3 !important"
-                ></i>
-                <span class="small fw-bold text-muted"
-                  >Bootstrap<br />Master</span
+
+              <div class="hero-tech-divider"></div>
+
+              <div class="hero-tech-card">
+                <div
+                  class="hero-tech-icon"
+                  style="background: #fdf4ff; color: #a855f7"
                 >
+                  <i class="fas fa-brain"></i>
+                </div>
+                <div class="hero-tech-info">
+                  <span class="hero-tech-name">AI Antusias</span>
+                  <span class="hero-tech-level">Enthusiast</span>
+                </div>
               </div>
-              <div class="vr"></div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="fas fa-database fa-2x text-secondary"></i>
-                <span class="small fw-bold text-muted"
-                  >MySQL<br />Database</span
+
+              <div class="hero-tech-divider"></div>
+
+              <div class="hero-tech-card">
+                <div
+                  class="hero-tech-icon"
+                  style="background: #fff7ed; color: #f97316"
                 >
+                  <i class="fas fa-pen-nib"></i>
+                </div>
+                <div class="hero-tech-info">
+                  <span class="hero-tech-name">UI/UX Design</span>
+                  <span class="hero-tech-level">Creative</span>
+                </div>
               </div>
             </div>
           </div>
@@ -164,7 +187,7 @@
               <div class="hero-img-wrapper">
                 <!-- Main Image -->
                 <img
-                  src="assets/image/profil_formal.png"
+                  src="assets/image/Kevin_Adisurya_Nugraha.jpg"
                   alt="Kevin Adisurya"
                   class="hero-main-img"
                 />
@@ -218,20 +241,21 @@
           <div class="col-lg-7 mt-4 mt-lg-0 ps-lg-5 reveal">
             <h3 class="fw-bold mb-3">Junior Web Developer</h3>
             <p class="text-muted">
-              Saya adalah pengembang web junior yang berdomisili di Jakarta,
-              Indonesia. Saat ini menempuh pendidikan S1 Ilmu Komputer di
-              Universitas Pertamina (Semester 1) setelah lulus dari SMKN 10
-              Jakarta jurusan Rekayasa Perangkat Lunak.
+              Kenalin, aku Kevin. Seorang anak kelahiran 2006 asal Sukabumi yang
+              lagi berupaya menjinakkan algoritma di Universitas Pertamina.
+              Dunia IT ternyata nggak sesederhana yang aku bayangkan, the
+              struggle is real, tapi setiap tantangan itu yang bikin aku tumbuh.
             </p>
             <p class="text-muted">
-              Saya memiliki pengalaman kerja selama 6 bulan dan telah
-              menyelesaikan pelatihan intensif Laravel 12 yang didukung oleh
-              Pusat Pelatihan Kerja Daerah Jakarta Pusat. Saya berkomitmen
-              tinggi untuk mengubah konsep menjadi solusi perangkat lunak yang
-              fungsional.
+              Buatku, teknologi itu jadi jauh lebih hidup karena orang-orang di
+              dalamnya. Hari-hari kuliah yang exhausting selalu berubah jadi
+              memori indah berkat canda gurau temen-temen seperjuangan. Tawa
+              mereka adalah booster yang ngubah lelah jadi senyum. Aku percaya
+              kalau kolaborasi dan support system yang solid adalah kunci utama
+              buat nyiptain inovasi yang bener-bener berdampak.
             </p>
 
-            <div class="row mt-4 g-3">
+            <div class="row mt-5 g-3">
               <!-- Email Card -->
               <div class="col-md-4">
                 <a
@@ -240,7 +264,7 @@
                 >
                   <div class="contact-info-card">
                     <div
-                      class="contact-icon-box"
+                      class="contact-card-icon-wrap"
                       style="
                         background: linear-gradient(
                           135deg,
@@ -251,11 +275,14 @@
                     >
                       <i class="fas fa-envelope"></i>
                     </div>
-                    <div class="contact-info-text">
-                      <h6 class="mb-1 fw-bold text-dark">Email</h6>
-                      <span class="text-muted small"
+                    <div class="contact-card-body">
+                      <span class="contact-card-label">Email</span>
+                      <span class="contact-card-value"
                         >habeelkevin@gmail.com</span
                       >
+                    </div>
+                    <div class="contact-card-arrow">
+                      <i class="fas fa-arrow-right"></i>
                     </div>
                   </div>
                 </a>
@@ -265,11 +292,12 @@
                 <a
                   href="https://github.com/kevinadisuryanugraha"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="text-decoration-none"
                 >
                   <div class="contact-info-card">
                     <div
-                      class="contact-icon-box"
+                      class="contact-card-icon-wrap"
                       style="
                         background: linear-gradient(
                           135deg,
@@ -280,23 +308,29 @@
                     >
                       <i class="fab fa-github"></i>
                     </div>
-                    <div class="contact-info-text">
-                      <h6 class="mb-1 fw-bold text-dark">GitHub</h6>
-                      <span class="text-muted small">kevinadisuryanugraha</span>
+                    <div class="contact-card-body">
+                      <span class="contact-card-label">GitHub</span>
+                      <span class="contact-card-value"
+                        >kevinadisuryanugraha</span
+                      >
+                    </div>
+                    <div class="contact-card-arrow">
+                      <i class="fas fa-arrow-right"></i>
                     </div>
                   </div>
                 </a>
               </div>
-              <!-- Phone/WA Card -->
+              <!-- WhatsApp Card -->
               <div class="col-md-4">
                 <a
                   href="https://wa.me/6289616682955"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="text-decoration-none"
                 >
                   <div class="contact-info-card">
                     <div
-                      class="contact-icon-box"
+                      class="contact-card-icon-wrap"
                       style="
                         background: linear-gradient(
                           135deg,
@@ -307,9 +341,12 @@
                     >
                       <i class="fab fa-whatsapp"></i>
                     </div>
-                    <div class="contact-info-text">
-                      <h6 class="mb-1 fw-bold text-dark">WhatsApp</h6>
-                      <span class="text-muted small">+62 896 1668 2955</span>
+                    <div class="contact-card-body">
+                      <span class="contact-card-label">WhatsApp</span>
+                      <span class="contact-card-value">+62 896 1668 2955</span>
+                    </div>
+                    <div class="contact-card-arrow">
+                      <i class="fas fa-arrow-right"></i>
                     </div>
                   </div>
                 </a>
@@ -339,7 +376,7 @@
               <h4 class="fw-bold mb-4 text-primary">
                 <i class="fas fa-server me-2"></i>Backend
               </h4>
-              <div class="d-flex flex-wrap">
+              <div class="skill-badges-container">
                 <div class="skill-badge">
                   <i class="fab fa-php text-primary"></i> PHP Native
                 </div>
@@ -365,7 +402,7 @@
               <h4 class="fw-bold mb-4 text-primary">
                 <i class="fas fa-laptop-code me-2"></i>Frontend
               </h4>
-              <div class="d-flex flex-wrap">
+              <div class="skill-badges-container">
                 <div class="skill-badge">
                   <i
                     class="fab fa-html5 text-orange"
@@ -399,7 +436,7 @@
               <h4 class="fw-bold mb-4 text-primary">
                 <i class="fas fa-tools me-2"></i>Tools & Lainnya
               </h4>
-              <div class="d-flex flex-wrap">
+              <div class="skill-badges-container">
                 <div class="skill-badge">
                   <i class="fab fa-git-alt text-danger"></i> Git
                 </div>
@@ -425,7 +462,7 @@
               <h4 class="fw-bold mb-4 text-primary">
                 <i class="fas fa-user-check me-2"></i>Soft Skills
               </h4>
-              <div class="d-flex flex-wrap">
+              <div class="skill-badges-container">
                 <div class="skill-badge">
                   <i class="fas fa-users-cog text-success"></i> Leadership
                 </div>
@@ -454,7 +491,7 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section-padding bg-white">
+    <section id="portfolio" class="section-padding bg-white position-relative">
       <div class="container">
         <div class="section-title reveal">
           <span class="section-subtitle">Proyek Terkini</span>
@@ -464,83 +501,264 @@
         <div class="row g-4 reveal">
           <!-- Project 1 -->
           <div class="col-lg-4 col-md-6">
-            <div class="card card-custom h-100">
-              <img src="assets/image/login.png" alt="FastLaundry" />
-              <div class="card-body p-4">
-                <div class="project-tech mb-3">
-                  <span>Laravel 12</span>
-                  <span>MySQL</span>
-                  <span>Bootstrap</span>
+            <div class="portfolio-card-v2">
+              <div class="portfolio-img-wrapper">
+                <img
+                  src="assets/image/portofolio_image/login.png"
+                  alt="FastLaundry"
+                />
+                <div class="portfolio-img-overlay">
+                  <div class="portfolio-links">
+                    <a
+                      href="https://github.com/kevinadisuryanugraha/Management_Laundry_Application"
+                      class="portfolio-link-btn"
+                      title="View Source"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="portfolio-link-btn" title="View Project">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
                 </div>
-                <h4 class="card-title fw-bold">Management Laundry</h4>
-                <p class="card-text text-muted small">
+              </div>
+              <div class="portfolio-body">
+                <div class="portfolio-tech-list">
+                  <span class="portfolio-tech-badge">Laravel 12</span>
+                  <span class="portfolio-tech-badge">MySQL</span>
+                  <span class="portfolio-tech-badge">Bootstrap</span>
+                </div>
+                <h4 class="portfolio-title">Management Laundry</h4>
+                <p class="portfolio-desc">
                   Platform layanan laundry profesional yang fungsional dan
                   efisien. Sistem backend yang optimal dalam pemrosesan data
                   menggunakan DataTables.
                 </p>
-              </div>
-              <div class="card-footer bg-white border-0 p-4 pt-0">
-                <a
-                  href="https://github.com/kevinadisuryanugraha/Management_Laundry_Application"
-                  class="btn btn-sm btn-outline-primary w-100"
-                  >Lihat Detail <i class="fas fa-arrow-right ms-2"></i
-                ></a>
               </div>
             </div>
           </div>
 
           <!-- Project 2 -->
           <div class="col-lg-4 col-md-6">
-            <div class="card card-custom h-100">
-              <img src="assets/image/yayasan_cms.png" alt="yayasan_cms" />
-              <div class="card-body p-4">
-                <div class="project-tech mb-3">
-                  <span>PHP Native</span>
-                  <span>MySQL</span>
-                  <span>Bootstrap</span>
+            <div class="portfolio-card-v2">
+              <div class="portfolio-img-wrapper">
+                <img
+                  src="assets/image/portofolio_image/yayasan_cms.png"
+                  alt="yayasan_cms"
+                />
+                <div class="portfolio-img-overlay">
+                  <div class="portfolio-links">
+                    <a
+                      href="https://github.com/kevinadisuryanugraha/Yayasan_CMS"
+                      class="portfolio-link-btn"
+                      title="View Source"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="portfolio-link-btn" title="View Project">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
                 </div>
-                <h4 class="card-title fw-bold">
+              </div>
+              <div class="portfolio-body">
+                <div class="portfolio-tech-list">
+                  <span class="portfolio-tech-badge">PHP Native</span>
+                  <span class="portfolio-tech-badge">MySQL</span>
+                  <span class="portfolio-tech-badge">Bootstrap</span>
+                </div>
+                <h4 class="portfolio-title">
                   Content Management System Yayasan
                 </h4>
-                <p class="card-text text-muted small">
+                <p class="portfolio-desc">
                   Sistem manajemen konten Website Yayasan berbasis web yang
                   fungsional. Sistem ini dirancang untuk memudahkan pengelolaan
                   konten website yayasan dengan fitur-fitur yang lengkap.
                 </p>
-              </div>
-              <div class="card-footer bg-white border-0 p-4 pt-0">
-                <a
-                  href="https://github.com/kevinadisuryanugraha/Yayasan_CMS"
-                  class="btn btn-sm btn-outline-primary w-100"
-                  >Lihat Detail <i class="fas fa-arrow-right ms-2"></i
-                ></a>
               </div>
             </div>
           </div>
 
           <!-- Project 3 -->
           <div class="col-lg-4 col-md-6">
-            <div class="card card-custom h-100">
-              <img src="assets/image/kasir.png" alt="POS System" />
-              <div class="card-body p-4">
-                <div class="project-tech mb-3">
-                  <span>Laravel 12</span>
-                  <span>MySQL</span>
-                  <span>Bootstrap</span>
+            <div class="portfolio-card-v2">
+              <div class="portfolio-img-wrapper">
+                <img
+                  src="assets/image/portofolio_image/kasir.png"
+                  alt="POS System"
+                />
+                <div class="portfolio-img-overlay">
+                  <div class="portfolio-links">
+                    <a
+                      href="https://github.com/kevinadisuryanugraha/Point_of_Sales_Application"
+                      class="portfolio-link-btn"
+                      title="View Source"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="portfolio-link-btn" title="View Project">
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
                 </div>
-                <h4 class="card-title fw-bold">POS System</h4>
-                <p class="card-text text-muted small">
+              </div>
+              <div class="portfolio-body">
+                <div class="portfolio-tech-list">
+                  <span class="portfolio-tech-badge">Laravel 12</span>
+                  <span class="portfolio-tech-badge">MySQL</span>
+                  <span class="portfolio-tech-badge">Bootstrap</span>
+                </div>
+                <h4 class="portfolio-title">POS System</h4>
+                <p class="portfolio-desc">
                   Aplikasi Web Point of Sales (POS) yang dibangun selama
                   pelatihan BNSP Web Programming menggunakan framework PHP
                   terbaru.
                 </p>
               </div>
-              <div class="card-footer bg-white border-0 p-4 pt-0">
-                <a
-                  href="https://github.com/kevinadisuryanugraha/Point_of_Sales_Application"
-                  class="btn btn-sm btn-outline-primary w-100"
-                  >Lihat Detail <i class="fas fa-arrow-right ms-2"></i
-                ></a>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="portfolio-card-v2">
+              <div class="portfolio-img-wrapper">
+                <img
+                  src="assets/image/portofolio_image/pictum.png"
+                  alt="Pictum"
+                />
+                <div class="portfolio-img-overlay">
+                  <div class="portfolio-links">
+                    <a
+                      href="https://github.com/kevinadisuryanugraha/pictumcoffe"
+                      class="portfolio-link-btn"
+                      title="View Source"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a
+                      href="https://pictumcoffe-htihmli7ow.edgeone.dev/"
+                      class="portfolio-link-btn"
+                      title="View Project"
+                    >
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-body">
+                <div class="portfolio-tech-list">
+                  <span class="portfolio-tech-badge">HTML5</span>
+                  <span class="portfolio-tech-badge">CSS3</span>
+                  <span class="portfolio-tech-badge">Vanilla JS</span>
+                </div>
+                <h4 class="portfolio-title">Pictum Coffee & Kitchen</h4>
+                <p class="portfolio-desc">
+                  Website Company Profile responsif untuk cafe dan restoran.
+                  Dibangun khusus menggunakan Native Stack (HTML, CSS, JS murni)
+                  dengan desain UI premium.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="portfolio-card-v2">
+              <div class="portfolio-img-wrapper">
+                <img
+                  src="assets/image/portofolio_image/homiecozieCoffee.png"
+                  alt="Homie Cozie Coffee"
+                />
+                <div class="portfolio-img-overlay">
+                  <div class="portfolio-links">
+                    <a
+                      href="https://github.com/kevinadisuryanugraha/homiecozieCoffee"
+                      class="portfolio-link-btn"
+                      title="View Source"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a
+                      href="https://homiecozie-t77oijxsor.edgeone.dev/"
+                      class="portfolio-link-btn"
+                      title="View Project"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-body">
+                <div class="portfolio-tech-list">
+                  <span class="portfolio-tech-badge">HTML5</span>
+                  <span class="portfolio-tech-badge">CSS3</span>
+                  <span class="portfolio-tech-badge">Vanilla JS</span>
+                </div>
+                <h4 class="portfolio-title">Homie Cozie Coffee</h4>
+                <p class="portfolio-desc">
+                  Landing page interaktif dan responsif untuk cafe & kitchen.
+                  Dilengkapi fitur menu dinamis, jadwal live music, serta
+                  integrasi pemesanan meja otomatis via WhatsApp API.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="portfolio-card-v2">
+              <div class="portfolio-img-wrapper">
+                <img
+                  src="assets/image/portofolio_image/klinikANF.png"
+                  alt="Klinik ANF"
+                />
+                <div class="portfolio-img-overlay">
+                  <div class="portfolio-links">
+                    <a
+                      href="https://github.com/kevinadisuryanugraha/klinikANF"
+                      class="portfolio-link-btn"
+                      title="View Source"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a
+                      href="https://klinikpratamaanf.edgeone.dev/"
+                      class="portfolio-link-btn"
+                      title="View Project"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-body">
+                <div class="portfolio-tech-list">
+                  <span class="portfolio-tech-badge">HTML5</span>
+                  <span class="portfolio-tech-badge">Tailwind CSS</span>
+                  <span class="portfolio-tech-badge">Vanilla JS</span>
+                </div>
+                <h4 class="portfolio-title">Klinik Pratama ANF</h4>
+                <p class="portfolio-desc">
+                  Platform sistem informasi profil klinik dan pendaftaran
+                  mandiri (Self-Registration) terpadu. Dilengkapi Dark Mode
+                  cerdas dan interface Mobile-First modern.
+                </p>
               </div>
             </div>
           </div>
@@ -551,61 +769,156 @@
     <!-- Experience & Education Section -->
     <section
       id="experience"
-      class="section-padding"
-      style="background-color: #f8fafc"
+      class="section-padding position-relative"
+      style="background-color: #f8fafc; overflow: hidden"
     >
-      <div class="container">
-        <div class="row">
+      <!-- Decorative Background blobs -->
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 300px;
+          height: 300px;
+          background: rgba(37, 99, 235, 0.05);
+          filter: blur(60px);
+          border-radius: 50%;
+          z-index: 0;
+        "
+      ></div>
+      <div
+        style="
+          position: absolute;
+          bottom: -100px;
+          right: 0;
+          width: 400px;
+          height: 400px;
+          background: rgba(16, 185, 129, 0.05);
+          filter: blur(80px);
+          border-radius: 50%;
+          z-index: 0;
+        "
+      ></div>
+
+      <div class="container position-relative z-1">
+        <div class="row g-lg-5">
           <!-- Experience -->
           <div class="col-lg-6 mb-5 mb-lg-0 reveal">
-            <div class="section-title text-start">
-              <span class="section-subtitle">Jejak Karir</span>
+            <div class="section-title text-start mb-5">
+              <span class="section-subtitle d-flex align-items-center gap-2">
+                <i class="fas fa-briefcase"></i> Jejak Karir
+              </span>
               <h2>Pengalaman Kerja</h2>
             </div>
-            <div class="timeline mt-5">
-              <div class="timeline-item">
-                <span class="timeline-date">Sep 2024 - Feb 2025</span>
-                <h5 class="fw-bold">Junior Web Developer</h5>
-                <p class="text-primary mb-2">
-                  PT Kurma Media | Depok, Jawa Barat
-                </p>
-                <ul class="text-muted small ps-3">
-                  <li>
-                    Merancang dan mengimplementasikan skema proyek full-stack
-                    untuk platform layanan profesional.
-                  </li>
-                  <li>
-                    Mengembangkan backend sistem menggunakan CodeIgniter 3,
-                    MySQL, dan SQLite.
-                  </li>
-                  <li>Menyelesaikan proyek akhir Website FastLaundry.</li>
-                  <li>
-                    Berpartisipasi aktif dalam kolaborasi tim profesional.
-                  </li>
-                </ul>
+
+            <div class="timeline-v2">
+              <div class="timeline-item-v2">
+                <div class="timeline-marker-v2">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="timeline-content-v2">
+                  <span class="timeline-date-v2">Sep 2024 - Feb 2025</span>
+                  <h5>Junior Web Developer</h5>
+                  <div class="timeline-company-v2">
+                    <i class="far fa-building"></i> PT Kurma Media | Depok, Jawa
+                    Barat
+                  </div>
+                  <ul
+                    class="text-muted small ps-3 mb-0"
+                    style="line-height: 1.7"
+                  >
+                    <li class="mb-1">
+                      Merancang dan mengimplementasikan skema proyek full-stack
+                      untuk platform layanan profesional.
+                    </li>
+                    <li class="mb-1">
+                      Mengembangkan backend sistem menggunakan CodeIgniter 3,
+                      MySQL, dan SQLite.
+                    </li>
+                    <li class="mb-1">
+                      Menyelesaikan proyek akhir Website FastLaundry.
+                    </li>
+                    <li>
+                      Berpartisipasi aktif dalam kolaborasi tim profesional.
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Education & Certification -->
           <div class="col-lg-6 reveal">
-            <div class="section-title text-start">
-              <span class="section-subtitle">Akademik</span>
+            <div class="section-title text-start mb-5">
+              <span class="section-subtitle d-flex align-items-center gap-2">
+                <i class="fas fa-graduation-cap"></i> Akademik
+              </span>
               <h2>Pendidikan</h2>
             </div>
-            <div class="timeline mt-5">
-              <div class="timeline-item">
-                <span class="timeline-date">Sekarang (Semester 1)</span>
-                <h5 class="fw-bold">S1 Ilmu Komputer</h5>
-                <p class="text-primary mb-0">Universitas Pertamina</p>
+
+            <div class="timeline-v2">
+              <!-- Kuliah -->
+              <div class="timeline-item-v2">
+                <div class="timeline-marker-v2">
+                  <i class="fas fa-university"></i>
+                </div>
+                <div class="timeline-content-v2">
+                  <span class="timeline-date-v2">Sekarang (Semester 2)</span>
+                  <h5>S1 Ilmu Komputer</h5>
+                  <div class="timeline-company-v2">
+                    <i class="fas fa-map-marker-alt"></i> Universitas Pertamina
+                  </div>
+                </div>
               </div>
-              <div class="timeline-item">
-                <span class="timeline-date">2022 - 2025</span>
-                <h5 class="fw-bold">Rekayasa Perangkat Lunak</h5>
-                <p class="text-primary mb-0">SMKN 10 Jakarta</p>
-                <small class="text-muted"
-                  >Lulusan Kompeten dengan Sertifikasi BNSP Junior Coder.</small
-                >
+
+              <!-- Pelatihan PPKD Jakarta Pusat -->
+              <div class="timeline-item-v2">
+                <div class="timeline-marker-v2">
+                  <i class="fas fa-school"></i>
+                </div>
+                <div class="timeline-content-v2">
+                  <span class="timeline-date-v2">Juli - September 2025</span>
+                  <h5>Pelatihan PPKD</h5>
+                  <div class="timeline-company-v2">
+                    <i class="fas fa-map-marker-alt"></i> Jakarta Pusat
+                  </div>
+                  <div
+                    class="mt-3 p-2 bg-light rounded border-start border-3 border-primary"
+                  >
+                    <small class="text-muted d-flex align-items-center gap-2">
+                      <i class="fas fa-award text-warning fs-6"></i>
+                      <span style="line-height: 1.4"
+                        >Lulusan Kompeten dengan Sertifikasi BNSP Junior Web
+                        Programmer.</span
+                      >
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SMK -->
+              <div class="timeline-item-v2">
+                <div class="timeline-marker-v2">
+                  <i class="fas fa-school"></i>
+                </div>
+                <div class="timeline-content-v2">
+                  <span class="timeline-date-v2">2022 - 2025</span>
+                  <h5>Rekayasa Perangkat Lunak</h5>
+                  <div class="timeline-company-v2">
+                    <i class="fas fa-map-marker-alt"></i> SMKN 10 Jakarta
+                  </div>
+                  <div
+                    class="mt-3 p-2 bg-light rounded border-start border-3 border-primary"
+                  >
+                    <small class="text-muted d-flex align-items-center gap-2">
+                      <i class="fas fa-award text-warning fs-6"></i>
+                      <span style="line-height: 1.4"
+                        >Lulusan Kompeten dengan Sertifikasi BNSP Junior
+                        Coder.</span
+                      >
+                    </small>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -623,24 +936,43 @@
         <div class="row justify-content-center reveal">
           <!-- Organization 1: Karang Taruna -->
           <div class="col-md-6 col-lg-5 mb-4">
-            <div class="card org-card p-4">
-              <div class="d-flex align-items-start">
-                <div class="me-3">
-                  <div class="org-icon-box">
-                    <i class="fas fa-users"></i>
-                  </div>
+            <div class="org-card-v2">
+              <!-- Card Header -->
+              <div
+                class="org-card-header"
+                style="
+                  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                "
+              >
+                <div class="org-card-icon">
+                  <i class="fas fa-users"></i>
                 </div>
-                <div>
-                  <h5 class="fw-bold mb-1">Karang Taruna</h5>
-                  <p class="text-muted small mb-2">
-                    <i class="far fa-calendar-alt me-1"></i> 2025 - Sekarang
-                  </p>
-                  <span class="badge bg-success mb-2">Anggota Aktif</span>
-                  <p class="text-muted small">
-                    Turut aktif mengikuti kegiatan kepemudaan dan sosial di
-                    lingkungan daerah, serta berkontribusi dalam berbagai
-                    program kerja kemasyarakatan.
-                  </p>
+                <div class="org-card-header-text">
+                  <h5 class="org-card-title">Karang Taruna</h5>
+                  <span class="org-card-meta"
+                    ><i class="far fa-calendar-alt me-1"></i>2025 –
+                    Sekarang</span
+                  >
+                </div>
+                <div
+                  class="org-card-badge-pill bg-white"
+                  style="color: #059669"
+                >
+                  Anggota Aktif
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="org-card-body">
+                <p class="org-card-desc">
+                  Turut aktif mengikuti kegiatan kepemudaan dan sosial di
+                  lingkungan daerah, serta berkontribusi dalam berbagai program
+                  kerja kemasyarakatan.
+                </p>
+                <div class="org-card-tags">
+                  <span
+                    ><i class="fas fa-map-marker-alt me-1"></i>Sukabumi</span
+                  >
+                  <span><i class="fas fa-hands-helping me-1"></i>Sosial</span>
                 </div>
               </div>
             </div>
@@ -648,30 +980,43 @@
 
           <!-- Organization 2: HIMALKOM Univ. Pertamina -->
           <div class="col-md-6 col-lg-5 mb-4">
-            <div
-              class="card org-card p-4"
-              style="border-left-color: var(--accent-color)"
-            >
-              <div class="d-flex align-items-start">
-                <div class="me-3">
-                  <div class="org-icon-box" style="color: var(--accent-color)">
-                    <i class="fas fa-university"></i>
-                  </div>
+            <div class="org-card-v2">
+              <!-- Card Header -->
+              <div
+                class="org-card-header"
+                style="
+                  background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+                "
+              >
+                <div class="org-card-icon">
+                  <i class="fas fa-university"></i>
                 </div>
-                <div>
-                  <h5 class="fw-bold mb-1">PEMIRA HIMPUNAN ILMU KOMPUTER</h5>
-                  <p class="text-muted small mb-2">
-                    <i class="fas fa-map-marker-alt me-1"></i> Universitas
-                    Pertamina
-                  </p>
-                  <span class="badge bg-info text-white mb-2"
-                    >Staff Divisi PDD</span
+                <div class="org-card-header-text">
+                  <h5 class="org-card-title">PEMIRA HIMALKOM</h5>
+                  <span class="org-card-meta"
+                    ><i class="fas fa-map-marker-alt me-1"></i>Universitas
+                    Pertamina</span
                   >
-                  <p class="text-muted small">
-                    Turut aktif dalam kepanitiaan event Pemilihan Raya (PEMIRA)
-                    Himpunan Mahasiswa Ilmu Komputer. Bertanggung jawab dalam
-                    divisi Publikasi, Dekorasi, dan Dokumentasi.
-                  </p>
+                </div>
+                <div
+                  class="org-card-badge-pill bg-white"
+                  style="color: #2563eb"
+                >
+                  Staff PDD
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="org-card-body">
+                <p class="org-card-desc">
+                  Turut aktif dalam kepanitiaan event Pemilihan Raya (PEMIRA)
+                  Himpunan Mahasiswa Ilmu Komputer sebagai Staff Divisi
+                  Publikasi, Dekorasi, dan Dokumentasi.
+                </p>
+                <div class="org-card-tags">
+                  <span
+                    ><i class="fas fa-photo-video me-1"></i>Dokumentasi</span
+                  >
+                  <span><i class="fas fa-paint-brush me-1"></i>Desain</span>
                 </div>
               </div>
             </div>
@@ -1138,6 +1483,7 @@
               </div>
             </div>
           </div>
+
           <!-- Item 14: PM GDGOC UG -->
           <div class="cert-card-masonry">
             <div
@@ -1165,6 +1511,120 @@
                     border-color: #fbcfe8;
                   "
                   >GDGOC</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2026</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 15: Exabytes -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal15"
+            >
+              <img
+                src="assets/image/sertif_image/exabytes.jpg"
+                alt="Exabytes"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">
+                Next-Gen Cyber Security: AI-Driven Threats & Defense for
+                Developers
+              </h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #be185d;
+                    background: #fce7f3;
+                    border-color: #fbcfe8;
+                  "
+                  >Exabytes</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2026</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 16: Gemini Arena -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal16"
+            >
+              <img
+                src="assets/image/sertif_image/gemini_arena.png"
+                alt="Exabytes"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">
+                Google Gemini Arena Workshop <br />
+                The visual Solver: Cracking Complex Problems with Gemini
+              </h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #be185d;
+                    background: #fce7f3;
+                    border-color: #fbcfe8;
+                  "
+                  >Google Gemini</span
+                >
+                <span class="cert-year"
+                  ><i class="far fa-calendar-alt"></i> 2026</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 17: Preneuries -->
+          <div class="cert-card-masonry">
+            <div
+              class="cert-img-wrapper"
+              data-bs-toggle="modal"
+              data-bs-target="#certModal17"
+            >
+              <img
+                src="assets/image/sertif_image/preneurs.png"
+                alt="Preneuries"
+                class="cert-img"
+              />
+              <div class="cert-overlay">
+                <span class="cert-btn-view">Lihat Detail</span>
+              </div>
+            </div>
+            <div class="cert-body">
+              <h6 class="cert-title">
+                Building Sustainable and Scalable Enterpreneurship in the Modern
+                Economy
+              </h6>
+              <div class="cert-meta">
+                <span
+                  class="cert-badge"
+                  style="
+                    color: #be185d;
+                    background: #fce7f3;
+                    border-color: #fbcfe8;
+                  "
+                  >Preneuries By StudentsxCEOs Jakarta</span
                 >
                 <span class="cert-year"
                   ><i class="far fa-calendar-alt"></i> 2026</span
@@ -1373,83 +1833,249 @@
         </div>
       </div>
     </div>
+    <!-- Modal 15 -->
+    <div class="modal fade" id="certModal15" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/exabytes.jpg"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 16 -->
+    <div class="modal fade" id="certModal16" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/gemini_arena.png"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 17 -->
+    <div class="modal fade" id="certModal17" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img
+              src="assets/image/sertif_image/preneurs.png"
+              class="w-100"
+              alt="Certificate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Certificate Modals (Lightboxes) -->
 
     <!-- Contact Section -->
-    <section id="contact" class="section-padding bg-white">
+    <section id="contact" class="section-padding contact-section">
       <div class="container">
         <div class="section-title reveal">
           <span class="section-subtitle">Hubungi Saya</span>
           <h2>Mari Bekerja Sama</h2>
         </div>
 
-        <div class="row justify-content-center reveal">
-          <div class="col-lg-8">
-            <div class="contact-box">
-              <form id="contactForm" onsubmit="return handleForm(event)">
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <label class="form-label fw-bold">Nama Lengkap</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Nama Anda"
-                      required
-                    />
+        <div class="row g-0 contact-wrapper reveal">
+          <!-- ===== LEFT PANEL ===== -->
+          <div class="col-lg-5">
+            <div class="contact-left-panel">
+              <!-- Status badge -->
+              <div class="contact-availability">
+                <span class="availability-dot"></span>
+                <span>Tersedia untuk proyek baru</span>
+              </div>
+
+              <h3 class="contact-panel-title">
+                Ayo Ngobrol &amp; Kolaborasi! 🚀
+              </h3>
+              <p class="contact-panel-desc">
+                Punya ide proyek, tawaran kerjasama, atau sekadar mau ngobrol
+                soal tech? Jangan ragu buat reach out — aku akan balas sesegera
+                mungkin!
+              </p>
+
+              <!-- Quick contact links -->
+              <div class="contact-quick-links">
+                <a
+                  href="mailto:habeelkevin@gmail.com"
+                  class="contact-quick-item"
+                >
+                  <div
+                    class="cq-icon"
+                    style="background: rgba(255, 255, 255, 0.15)"
+                  >
+                    <i class="fas fa-envelope"></i>
                   </div>
-                  <div class="col-md-6 mb-3">
-                    <label class="form-label fw-bold">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="email@contoh.com"
-                      required
-                    />
+                  <div class="cq-text">
+                    <span class="cq-label">Email</span>
+                    <span class="cq-value">habeelkevin@gmail.com</span>
                   </div>
-                  <div class="col-12 mb-3">
-                    <label class="form-label fw-bold">Subjek</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Tawaran Kerjasama / Project"
-                      required
-                    />
+                  <i class="fas fa-arrow-right cq-arrow"></i>
+                </a>
+                <a
+                  href="https://wa.me/6289616682955"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-quick-item"
+                >
+                  <div
+                    class="cq-icon"
+                    style="background: rgba(255, 255, 255, 0.15)"
+                  >
+                    <i class="fab fa-whatsapp"></i>
                   </div>
-                  <div class="col-12 mb-4">
-                    <label class="form-label fw-bold">Pesan</label>
-                    <textarea
-                      class="form-control"
-                      rows="5"
-                      placeholder="Tulis pesan Anda di sini..."
-                      required
-                    ></textarea>
+                  <div class="cq-text">
+                    <span class="cq-label">WhatsApp</span>
+                    <span class="cq-value">+62 896 1668 2955</span>
                   </div>
-                  <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-custom-primary px-5">
-                      Kirim Pesan <i class="fas fa-paper-plane ms-2"></i>
+                  <i class="fas fa-arrow-right cq-arrow"></i>
+                </a>
+                <a
+                  href="https://github.com/kevinadisuryanugraha"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-quick-item"
+                >
+                  <div
+                    class="cq-icon"
+                    style="background: rgba(255, 255, 255, 0.15)"
+                  >
+                    <i class="fab fa-github"></i>
+                  </div>
+                  <div class="cq-text">
+                    <span class="cq-label">GitHub</span>
+                    <span class="cq-value">kevinadisuryanugraha</span>
+                  </div>
+                  <i class="fas fa-arrow-right cq-arrow"></i>
+                </a>
+              </div>
+
+              <!-- Social icons row -->
+              <div class="contact-socials">
+                <a href="#" class="contact-social-btn" title="LinkedIn">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a
+                  href="https://github.com/kevinadisuryanugraha"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-social-btn"
+                  title="GitHub"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="contact-social-btn" title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="mailto:habeelkevin@gmail.com"
+                  class="contact-social-btn"
+                  title="Email"
+                >
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </div>
+
+              <!-- Decorative blobs -->
+              <div class="contact-blob contact-blob-1"></div>
+              <div class="contact-blob contact-blob-2"></div>
+            </div>
+          </div>
+
+          <!-- ===== RIGHT PANEL (Form) ===== -->
+          <div class="col-lg-7">
+            <div class="contact-right-panel">
+              <h4 class="contact-form-heading">Kirim Pesan</h4>
+              <p class="contact-form-subtext">
+                Isi formulir di bawah ini dan aku akan menghubungimu kembali.
+              </p>
+
+              <form
+                id="contactForm"
+                onsubmit="return handleForm(event)"
+                class="contact-form"
+                autocomplete="off"
+              >
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="form-float-group">
+                      <input
+                        type="text"
+                        id="cf-name"
+                        class="form-float-input"
+                        placeholder=" "
+                        required
+                      />
+                      <label for="cf-name" class="form-float-label">
+                        <i class="fas fa-user me-1"></i> Nama Lengkap
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-float-group">
+                      <input
+                        type="email"
+                        id="cf-email"
+                        class="form-float-input"
+                        placeholder=" "
+                        required
+                      />
+                      <label for="cf-email" class="form-float-label">
+                        <i class="fas fa-envelope me-1"></i> Email
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-float-group">
+                      <input
+                        type="text"
+                        id="cf-subject"
+                        class="form-float-input"
+                        placeholder=" "
+                        required
+                      />
+                      <label for="cf-subject" class="form-float-label">
+                        <i class="fas fa-tag me-1"></i> Subjek
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-float-group">
+                      <textarea
+                        id="cf-message"
+                        class="form-float-input form-float-textarea"
+                        placeholder=" "
+                        rows="5"
+                        required
+                      ></textarea>
+                      <label for="cf-message" class="form-float-label">
+                        <i class="fas fa-comment-dots me-1"></i> Pesan
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn-contact-submit">
+                      <span class="btn-submit-text">
+                        Kirim Pesan <i class="fas fa-paper-plane ms-2"></i>
+                      </span>
+                      <span class="btn-submit-loading" style="display: none">
+                        <i class="fas fa-spinner fa-spin me-2"></i> Mengirim...
+                      </span>
                     </button>
                   </div>
                 </div>
               </form>
-            </div>
-
-            <div class="text-center mt-5">
-              <p class="mb-3 text-muted">Atau temukan saya di sosial media:</p>
-              <div>
-                <a href="#" class="social-link"
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
-                <a href="#" class="social-link"
-                  ><i class="fab fa-github"></i
-                ></a>
-                <a href="#" class="social-link"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a href="mailto:habeelkevin@gmail.com" class="social-link"
-                  ><i class="fas fa-envelope"></i
-                ></a>
-              </div>
             </div>
           </div>
         </div>
@@ -1467,9 +2093,12 @@
     </footer>
 
     <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
 
     <!-- Custom Native JS -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

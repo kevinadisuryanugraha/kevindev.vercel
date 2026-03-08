@@ -1,32 +1,36 @@
 // 1. Typing Effect Logic
 const textElement = document.getElementById("typewriter");
 const phrases = [
-  "Junior Full-Stack Developer.",
-  "Laravel Enthusiast.",
-  "Problem Solver.",
-  "Web Developer.",
-];
+  "Web Developer",
+  "AI Antusias",
+  "Mahasiswa",
+  "UI/UX Design",
+]; // Removed trailing dots for a cleaner cursor look
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 let typeSpeed = 100;
 
+// Add a cursor element in HTML programmatically if not present, but for now we just append a span
 function type() {
   const currentPhrase = phrases[phraseIndex];
 
   if (isDeleting) {
-    textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+    // textElement.textContent = currentPhrase.substring(0, charIndex - 1);
     charIndex--;
-    typeSpeed = 50; // Faster when deleting
+    typeSpeed = 40; // Faster when deleting
   } else {
-    textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+    // textElement.textContent = currentPhrase.substring(0, charIndex + 1);
     charIndex++;
-    typeSpeed = 100; // Normal typing speed
+    typeSpeed = 120; // Normal typing speed
   }
+
+  // Inject text with a blinking cursor span
+  textElement.innerHTML = currentPhrase.substring(0, charIndex) + `<span class="typing-cursor">|</span>`;
 
   if (!isDeleting && charIndex === currentPhrase.length) {
     isDeleting = true;
-    typeSpeed = 2000; // Pause at end
+    typeSpeed = 2000; // Pause at end before deleting
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
     phraseIndex = (phraseIndex + 1) % phrases.length;
@@ -65,22 +69,33 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// 4. Form Handling (Mockup)
+// 4. Form Handling (Direct to WhatsApp)
 function handleForm(e) {
   e.preventDefault();
   const btn = e.target.querySelector("button");
   const originalText = btn.innerHTML;
 
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Mengirim...';
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Mengalihkan...';
   btn.disabled = true;
 
-  // Simulasi pengiriman
+  // Get values from form inputs
+  const name = document.getElementById("cf-name").value;
+  const email = document.getElementById("cf-email").value;
+  const subject = document.getElementById("cf-subject").value;
+  const message = document.getElementById("cf-message").value;
+
+  // Format WhatsApp message
+  const waNumber = "6289616682955";
+  const waText = `Halo Kevin, saya ${name} (${email}).%0A%0ASubjek: ${subject}%0A%0A${message}`;
+  const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
+
+  // Redirect to WhatsApp
   setTimeout(() => {
-    alert("Terima kasih, Kevin akan segera menghubungi Anda!");
+    window.open(waUrl, "_blank");
     e.target.reset();
     btn.innerHTML = originalText;
     btn.disabled = false;
-  }, 1500);
+  }, 800);
 
   return false;
 }
