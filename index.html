@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
+    <script>
+      (function() {
+        try {
+          const stored = localStorage.getItem("kevin-porto-theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const theme = stored || (prefersDark ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+          document.documentElement.setAttribute("data-bs-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -8,6 +19,48 @@
       content="Portofolio Kevin Adisurya Nugraha - Junior Full-Stack Developer"
     />
     <title>Kevin Adisurya N. | Full-Stack Developer</title>
+
+    <!-- SEO & Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kevin Adisurya Nugraha | Full-Stack Developer" />
+    <meta property="og:description" content="Portofolio Kevin Adisurya Nugraha - Junior Full-Stack Developer spesialis Laravel, CodeIgniter, dan teknologi web modern." />
+    <meta property="og:image" content="assets/image/Kevin_Adisurya_Nugraha.jpg" />
+    <meta property="og:url" content="https://kevindev.vercel.app" />
+    <meta property="og:site_name" content="Kevin.Dev" />
+    <meta property="og:locale" content="id_ID" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kevin Adisurya Nugraha | Full-Stack Developer" />
+    <meta name="twitter:description" content="Junior Full-Stack Developer spesialis Laravel, CodeIgniter, dan teknologi web modern." />
+    <meta name="twitter:image" content="assets/image/Kevin_Adisurya_Nugraha.jpg" />
+    <meta name="author" content="Kevin Adisurya Nugraha" />
+    <meta name="keywords" content="Kevin Adisurya, Web Developer, Laravel, CodeIgniter, Full-Stack, Portofolio, Universitas Pertamina" />
+    <link rel="canonical" href="https://kevindev.vercel.app" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kevin Adisurya Nugraha",
+      "url": "https://kevindev.vercel.app",
+      "image": "assets/image/Kevin_Adisurya_Nugraha.jpg",
+      "jobTitle": "Junior Full-Stack Web Developer",
+      "email": "habeelkevin@gmail.com",
+      "sameAs": [
+        "https://github.com/kevinadisuryanugraha",
+        "https://www.linkedin.com/in/kevin-adisurya-nugraha/",
+        "https://www.instagram.com/kvn.ads/"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Universitas Pertamina"
+      }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon.svg" />
 
     <!-- Performance Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,15 +86,9 @@
       rel="stylesheet"
     />
 
-    <!-- Swiper CSS (Untuk Slider Sertifikat Professional) -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body data-bs-spy="scroll" data-bs-target=".navbar">
+  <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="85" style="position: relative">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
@@ -86,6 +133,10 @@
               <a class="nav-link" href="#contact">Kontak</a>
             </li>
           </ul>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+          </button>
         </div>
       </div>
     </nav>
@@ -126,9 +177,12 @@
                 Hubungi Saya <i class="fas fa-paper-plane ms-2"></i>
               </a>
               <a
-                href="#"
+                href="assets/CvAtsKevinAdisurya.pdf"
                 class="btn btn-custom-outline"
-                onclick="alert('Fitur download CV akan tersedia segera!')"
+                download="CV_Kevin_Adisurya_Nugraha.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Unduh CV Kevin Adisurya Nugraha"
               >
                 <i class="fas fa-download me-2"></i>Unduh CV
               </a>
@@ -212,7 +266,7 @@
                     <i class="fas fa-certificate"></i>
                   </div>
                   <div class="text-start">
-                    <h6 class="mb-0 fw-bold text-dark">BNSP Certified</h6>
+                    <h6 class="mb-0 fw-bold">BNSP Certified</h6>
                     <small class="text-muted">Web Programming</small>
                   </div>
                 </div>
@@ -224,7 +278,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section-padding bg-white">
+    <section id="about" class="section-padding bg-section-alt">
       <div class="container">
         <div class="section-title reveal">
           <span class="section-subtitle">Informasi Diri</span>
@@ -357,11 +411,41 @@
       </div>
     </section>
 
+    <!-- Stats Counter Strip -->
+    <section class="stats-strip-section">
+      <div class="container">
+        <div class="stats-strip reveal">
+          <div class="stat-item">
+            <div class="stat-number" data-target="7">0</div>
+            <div class="stat-symbol">+</div>
+            <div class="stat-label">Proyek Selesai</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="17">0</div>
+            <div class="stat-symbol">+</div>
+            <div class="stat-label">Sertifikat</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="10">0</div>
+            <div class="stat-symbol">+</div>
+            <div class="stat-label">Teknologi</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="1">0</div>
+            <div class="stat-symbol">+</div>
+            <div class="stat-label">Tahun Pengalaman</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Skills Section -->
     <section
       id="skills"
-      class="section-padding"
-      style="background-color: #f8fafc"
+      class="section-padding bg-section-main"
     >
       <div class="container">
         <div class="section-title reveal">
@@ -372,7 +456,15 @@
         <div class="row reveal">
           <!-- Backend -->
           <div class="col-md-6 mb-4">
-            <div class="card card-custom p-4">
+            <div class="card card-custom p-4"
+              data-tilt
+              data-tilt-max="5"
+              data-tilt-speed="500"
+              data-tilt-perspective="1000"
+              data-tilt-glare="true"
+              data-tilt-max-glare="0.08"
+              data-tilt-scale="1.02"
+            >
               <h4 class="fw-bold mb-4 text-primary">
                 <i class="fas fa-server me-2"></i>Backend
               </h4>
@@ -491,21 +583,46 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section-padding bg-white position-relative">
+    <section id="portfolio" class="section-padding bg-section-alt position-relative">
       <div class="container">
         <div class="section-title reveal">
           <span class="section-subtitle">Proyek Terkini</span>
           <h2>Portofolio</h2>
         </div>
 
-        <div class="row g-4 reveal">
+        <!-- Portfolio Filter Buttons -->
+        <div class="portfolio-filter reveal">
+          <button class="filter-btn active" data-filter="all">
+            <i class="fas fa-th me-1"></i> Semua
+          </button>
+          <button class="filter-btn" data-filter="laravel">
+            <i class="fab fa-laravel me-1"></i> Laravel
+          </button>
+          <button class="filter-btn" data-filter="php">
+            <i class="fab fa-php me-1"></i> PHP Native
+          </button>
+          <button class="filter-btn" data-filter="html">
+            <i class="fab fa-html5 me-1"></i> HTML/JS
+          </button>
+        </div>
+
+        <div class="row g-4 portfolio-grid">
           <!-- Project 1 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="portfolio-card-v2">
+          <div class="col-lg-4 col-md-6 portfolio-item" data-category="laravel">
+            <div class="portfolio-card-v2"
+              data-tilt
+              data-tilt-max="8"
+              data-tilt-speed="400"
+              data-tilt-perspective="800"
+              data-tilt-glare="true"
+              data-tilt-max-glare="0.15"
+              data-tilt-scale="1.03"
+            >
               <div class="portfolio-img-wrapper">
                 <img
                   src="assets/image/portofolio_image/login.png"
                   alt="FastLaundry"
+                  loading="lazy"
                 />
                 <div class="portfolio-img-overlay">
                   <div class="portfolio-links">
@@ -541,12 +658,13 @@
           </div>
 
           <!-- Project 2 -->
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 portfolio-item" data-category="php">
             <div class="portfolio-card-v2">
               <div class="portfolio-img-wrapper">
                 <img
                   src="assets/image/portofolio_image/yayasan_cms.png"
                   alt="yayasan_cms"
+                  loading="lazy"
                 />
                 <div class="portfolio-img-overlay">
                   <div class="portfolio-links">
@@ -584,12 +702,13 @@
           </div>
 
           <!-- Project 3 -->
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 portfolio-item" data-category="laravel">
             <div class="portfolio-card-v2">
               <div class="portfolio-img-wrapper">
                 <img
                   src="assets/image/portofolio_image/kasir.png"
                   alt="POS System"
+                  loading="lazy"
                 />
                 <div class="portfolio-img-overlay">
                   <div class="portfolio-links">
@@ -625,12 +744,13 @@
           </div>
 
           <!-- Project 4 -->
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 portfolio-item" data-category="html">
             <div class="portfolio-card-v2">
               <div class="portfolio-img-wrapper">
                 <img
                   src="assets/image/portofolio_image/pictum.png"
                   alt="Pictum"
+                  loading="lazy"
                 />
                 <div class="portfolio-img-overlay">
                   <div class="portfolio-links">
@@ -670,12 +790,13 @@
           </div>
 
           <!-- Project 5 -->
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 portfolio-item" data-category="html">
             <div class="portfolio-card-v2">
               <div class="portfolio-img-wrapper">
                 <img
                   src="assets/image/portofolio_image/homiecozieCoffee.png"
                   alt="Homie Cozie Coffee"
+                  loading="lazy"
                 />
                 <div class="portfolio-img-overlay">
                   <div class="portfolio-links">
@@ -717,12 +838,13 @@
           </div>
 
           <!-- Project 6 -->
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 portfolio-item" data-category="html">
             <div class="portfolio-card-v2">
               <div class="portfolio-img-wrapper">
                 <img
                   src="assets/image/portofolio_image/klinikANF.png"
                   alt="Klinik ANF"
+                  loading="lazy"
                 />
                 <div class="portfolio-img-overlay">
                   <div class="portfolio-links">
@@ -764,12 +886,13 @@
           </div>
 
           <!-- Project 7 -->
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 portfolio-item" data-category="html">
             <div class="portfolio-card-v2">
               <div class="portfolio-img-wrapper">
                 <img
                   src="assets/image/portofolio_image/panggonan.webp"
                   alt="Panggonan Resto"
+                  loading="lazy"
                 />
                 <div class="portfolio-img-overlay">
                   <div class="portfolio-links">
@@ -814,8 +937,8 @@
     <!-- Experience & Education Section -->
     <section
       id="experience"
-      class="section-padding position-relative"
-      style="background-color: #f8fafc; overflow: hidden"
+      class="section-padding position-relative bg-section-main"
+      style="overflow: hidden"
     >
       <!-- Decorative Background blobs -->
       <div
@@ -972,7 +1095,7 @@
     </section>
 
     <!-- Organization Section (New) -->
-    <section id="organization" class="section-padding bg-white">
+    <section id="organization" class="section-padding bg-section-alt">
       <div class="container">
         <div class="section-title reveal">
           <span class="section-subtitle">Keterlibatan Sosial</span>
@@ -981,7 +1104,15 @@
         <div class="row justify-content-center reveal">
           <!-- Organization 1: Karang Taruna -->
           <div class="col-md-6 col-lg-5 mb-4">
-            <div class="org-card-v2">
+            <div class="org-card-v2"
+              data-tilt
+              data-tilt-max="6"
+              data-tilt-speed="400"
+              data-tilt-perspective="900"
+              data-tilt-glare="true"
+              data-tilt-max-glare="0.1"
+              data-tilt-scale="1.025"
+            >
               <!-- Card Header -->
               <div
                 class="org-card-header"
@@ -1000,7 +1131,7 @@
                   >
                 </div>
                 <div
-                  class="org-card-badge-pill bg-white"
+                  class="org-card-badge-pill"
                   style="color: #059669"
                 >
                   Anggota Aktif
@@ -1044,7 +1175,7 @@
                   >
                 </div>
                 <div
-                  class="org-card-badge-pill bg-white"
+                  class="org-card-badge-pill"
                   style="color: #2563eb"
                 >
                   Staff PDD
@@ -1073,8 +1204,7 @@
     <!-- Certificates Section (SWIPER JS Grid 2 Baris) -->
     <section
       id="certificates"
-      class="section-padding"
-      style="background-color: #f8fafc"
+      class="section-padding bg-section-main"
     >
       <div class="container reveal">
         <div class="section-title">
@@ -1086,7 +1216,7 @@
           </p>
         </div>
 
-        <!-- Swiper Container -->
+        <!-- Masonry Grid -->
         <div class="masonry-row">
           <!-- Item 1: BNSP Web Programming -->
           <div class="cert-card-masonry">
@@ -2008,7 +2138,14 @@
 
               <!-- Social icons row -->
               <div class="contact-socials">
-                <a href="#" class="contact-social-btn" title="LinkedIn">
+                <a
+                  href="https://www.linkedin.com/in/kevin-adisurya-nugraha/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-social-btn"
+                  title="LinkedIn"
+                  aria-label="LinkedIn Kevin Adisurya"
+                >
                   <i class="fab fa-linkedin-in"></i>
                 </a>
                 <a
@@ -2017,16 +2154,25 @@
                   rel="noopener noreferrer"
                   class="contact-social-btn"
                   title="GitHub"
+                  aria-label="GitHub Kevin Adisurya"
                 >
                   <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="contact-social-btn" title="Instagram">
+                <a
+                  href="https://www.instagram.com/kvn.ads/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-social-btn"
+                  title="Instagram"
+                  aria-label="Instagram Kevin Adisurya"
+                >
                   <i class="fab fa-instagram"></i>
                 </a>
                 <a
                   href="mailto:habeelkevin@gmail.com"
                   class="contact-social-btn"
                   title="Email"
+                  aria-label="Email Kevin Adisurya"
                 >
                   <i class="fas fa-envelope"></i>
                 </a>
@@ -2127,6 +2273,11 @@
       </div>
     </section>
 
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Kembali ke atas">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- Footer -->
     <footer>
       <div class="container">
@@ -2136,6 +2287,12 @@
         <small>Dibuat dengan HTML, CSS, Bootstrap 5 & Vanilla JS</small>
       </div>
     </footer>
+
+    <!-- Vanilla Tilt.js - 3D Tilt Effect -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"
+      defer
+    ></script>
 
     <!-- Bootstrap 5 JS Bundle -->
     <script

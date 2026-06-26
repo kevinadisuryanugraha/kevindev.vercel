@@ -5,36 +5,32 @@ const phrases = [
   "AI Antusias",
   "Mahasiswa",
   "UI/UX Design",
-]; // Removed trailing dots for a cleaner cursor look
+];
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 let typeSpeed = 100;
 
-// Add a cursor element in HTML programmatically if not present, but for now we just append a span
 function type() {
   const currentPhrase = phrases[phraseIndex];
 
   if (isDeleting) {
-    // textElement.textContent = currentPhrase.substring(0, charIndex - 1);
     charIndex--;
-    typeSpeed = 40; // Faster when deleting
+    typeSpeed = 40;
   } else {
-    // textElement.textContent = currentPhrase.substring(0, charIndex + 1);
     charIndex++;
-    typeSpeed = 120; // Normal typing speed
+    typeSpeed = 120;
   }
 
-  // Inject text with a blinking cursor span
   textElement.innerHTML = currentPhrase.substring(0, charIndex) + `<span class="typing-cursor">|</span>`;
 
   if (!isDeleting && charIndex === currentPhrase.length) {
     isDeleting = true;
-    typeSpeed = 2000; // Pause at end before deleting
+    typeSpeed = 2000;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
     phraseIndex = (phraseIndex + 1) % phrases.length;
-    typeSpeed = 500; // Pause before new word
+    typeSpeed = 500;
   }
 
   setTimeout(type, typeSpeed);
@@ -43,91 +39,282 @@ function type() {
 // 2. Scroll Animation (Reveal on Scroll)
 function reveal() {
   var reveals = document.querySelectorAll(".reveal");
-
   for (var i = 0; i < reveals.length; i++) {
     var windowHeight = window.innerHeight;
     var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 150;
-
+    var elementVisible = 120;
     if (elementTop < windowHeight - elementVisible) {
       reveals[i].classList.add("active");
     }
   }
 }
 
-window.addEventListener("scroll", reveal);
-
 // 3. Navbar Background Change on Scroll
 const navbar = document.querySelector(".navbar");
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    navbar.style.background = "rgba(255, 255, 255, 0.95)";
-    navbar.style.boxShadow = "0 5px 20px rgba(0,0,0,0.1)";
+  navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+// 4. Navbar Active Link on Scroll (Scroll Spy)
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
+
+function updateActiveNav() {
+  const scrollY = window.scrollY;
+  const offset = 120; // account for fixed navbar height
+
+  let current = "";
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - offset;
+    const sectionHeight = section.offsetHeight;
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    const href = link.getAttribute("href");
+    if (href === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", updateActiveNav);
+updateActiveNav(); // run on load too
+
+// 5. Scroll-to-Top Button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 400) {
+    scrollTopBtn.classList.add("visible");
   } else {
-    navbar.style.background = "rgba(255, 255, 255, 0.9)";
-    navbar.style.boxShadow = "0 2px 15px rgba(0,0,0,0.05)";
+    scrollTopBtn.classList.remove("visible");
   }
 });
 
-// 4. Form Handling (Direct to WhatsApp)
+scrollTopBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// 6. Portfolio Filter
+const filterBtns = document.querySelectorAll(".filter-btn");
+const portfolioItems = document.querySelectorAll(".portfolio-item");
+
+filterBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // Update active button
+    filterBtns.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.getAttribute("data-filter");
+
+    portfolioItems.forEach((item) => {
+      const category = item.getAttribute("data-category");
+      const match = filter === "all" || category === filter;
+
+      if (match) {
+        item.style.display = "block";
+        // Animate in
+        requestAnimationFrame(() => {
+          item.style.opacity = "0";
+          item.style.transform = "scale(0.9) translateY(20px)";
+          requestAnimationFrame(() => {
+            item.style.transition = "opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
+            item.style.opacity = "1";
+            item.style.transform = "scale(1) translateY(0)";
+          });
+        });
+      } else {
+        item.style.transition = "opacity 0.25s ease, transform 0.25s ease";
+        item.style.opacity = "0";
+        item.style.transform = "scale(0.85) translateY(10px)";
+        setTimeout(() => {
+          item.style.display = "none";
+        }, 260);
+      }
+    });
+
+    // Re-init VanillaTilt on newly visible cards after filter
+    setTimeout(() => {
+      if (typeof VanillaTilt !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+        const visibleCards = document.querySelectorAll(".portfolio-item:not([style*='display: none']) .portfolio-card-v2");
+        VanillaTilt.init(visibleCards, {
+          max: 8, speed: 400, perspective: 800,
+          glare: true, "max-glare": 0.15, scale: 1.04, gyroscope: false,
+        });
+      }
+    }, 300);
+  });
+});
+
+// 7. Count-Up Animation (Stats Strip)
+function easeOutCubic(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function animateCounter(el) {
+  const target = parseInt(el.getAttribute("data-target"), 10);
+  const duration = 1800;
+  const start = performance.now();
+
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const value = Math.round(easeOutCubic(progress) * target);
+    el.textContent = value;
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(update);
+}
+
+// Trigger counters when stats strip enters viewport
+const statsObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll(".stat-number").forEach(animateCounter);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.4 }
+);
+
+const statsStrip = document.querySelector(".stats-strip");
+if (statsStrip) statsObserver.observe(statsStrip);
+
+// 6. Reveal + scroll events combined
+window.addEventListener("scroll", reveal);
+
+// 7. Form Handling (Direct to WhatsApp)
+let formSubmitting = false;
+
 function handleForm(e) {
   e.preventDefault();
-  const btn = e.target.querySelector("button");
-  const originalText = btn.innerHTML;
+  if (formSubmitting) return false;
 
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Mengalihkan...';
+  const btn = e.target.querySelector("button");
+  const submitText = btn.querySelector(".btn-submit-text");
+  const loadingText = btn.querySelector(".btn-submit-loading");
+
+  formSubmitting = true;
+  submitText.style.display = "none";
+  loadingText.style.display = "inline";
   btn.disabled = true;
 
-  // Get values from form inputs
   const name = document.getElementById("cf-name").value;
   const email = document.getElementById("cf-email").value;
   const subject = document.getElementById("cf-subject").value;
   const message = document.getElementById("cf-message").value;
 
-  // Format WhatsApp message
   const waNumber = "6289616682955";
   const waText = `Halo Kevin, saya ${name} (${email}).%0A%0ASubjek: ${subject}%0A%0A${message}`;
   const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
 
-  // Redirect to WhatsApp
-  setTimeout(() => {
-    window.open(waUrl, "_blank");
-    e.target.reset();
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-  }, 800);
+  window.open(waUrl, "_blank");
+  e.target.reset();
+  submitText.style.display = "inline";
+  loadingText.style.display = "none";
+  btn.disabled = false;
+  formSubmitting = false;
 
   return false;
 }
 
-// Initialize Typing Effect on Load
+// 8. Mobile Navbar: Close on link click
+const navbarCollapse = document.getElementById("navbarNav");
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    if (navbarCollapse && navbarCollapse.classList.contains("show")) {
+      const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+      bsCollapse.hide();
+    }
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   type();
-  reveal(); // Check initial scroll position
+  reveal();
+  initTheme();
 });
 
-// 5. PDF Modal Preview Function
-function openPdfModal(pdfPath, title) {
-  // Set modal title
-  document.getElementById("pdfModalTitle").textContent = title;
+// 9. Dark Mode Toggle
+const STORAGE_KEY = "kevin-porto-theme";
 
-  // Set PDF viewer source
-  document.getElementById("pdfViewer").src = pdfPath;
-
-  // Set download button href
-  document.getElementById("pdfDownloadBtn").href = pdfPath;
-
-  // Show modal using Bootstrap
-  const modal = new bootstrap.Modal(document.getElementById("pdfPreviewModal"));
-  modal.show();
+function initTheme() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = stored || (prefersDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.setAttribute("data-bs-theme", theme);
+  } catch (e) {}
 }
 
-// Clear PDF viewer when modal is closed to prevent memory issues
-document.addEventListener("DOMContentLoaded", () => {
-  const pdfModal = document.getElementById("pdfPreviewModal");
-  if (pdfModal) {
-    pdfModal.addEventListener("hidden.bs.modal", () => {
-      document.getElementById("pdfViewer").src = "";
+function toggleTheme() {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  document.documentElement.setAttribute("data-bs-theme", next);
+  localStorage.setItem(STORAGE_KEY, next);
+}
+
+document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+
+// 10. Vanilla Tilt 3D Effect — initialize after DOM is ready
+function initTilt() {
+  // Only init on non-touch devices for best UX
+  if (window.matchMedia("(hover: hover)").matches && typeof VanillaTilt !== "undefined") {
+
+    // Portfolio Cards — most dramatic tilt + glare
+    VanillaTilt.init(document.querySelectorAll(".portfolio-card-v2"), {
+      max: 8,
+      speed: 400,
+      perspective: 800,
+      glare: true,
+      "max-glare": 0.15,
+      scale: 1.04,
+      gyroscope: false,
+    });
+
+    // Skill Cards — subtle tilt
+    VanillaTilt.init(document.querySelectorAll(".card-custom"), {
+      max: 5,
+      speed: 500,
+      perspective: 1000,
+      glare: true,
+      "max-glare": 0.08,
+      scale: 1.02,
+      gyroscope: false,
+    });
+
+    // Organization Cards — medium tilt
+    VanillaTilt.init(document.querySelectorAll(".org-card-v2"), {
+      max: 6,
+      speed: 400,
+      perspective: 900,
+      glare: true,
+      "max-glare": 0.1,
+      scale: 1.025,
+      gyroscope: false,
+    });
+
+    // Certificate Cards — gentle tilt (many cards, keep subtle)
+    VanillaTilt.init(document.querySelectorAll(".cert-card-masonry"), {
+      max: 5,
+      speed: 600,
+      perspective: 1000,
+      glare: true,
+      "max-glare": 0.07,
+      scale: 1.015,
+      gyroscope: false,
     });
   }
-});
+}
+
+// Wait for Vanilla Tilt script to load then init
+window.addEventListener("load", initTilt);
