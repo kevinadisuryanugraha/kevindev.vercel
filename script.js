@@ -1,10 +1,10 @@
 // 1. Typing Effect Logic
 const textElement = document.getElementById("typewriter");
 const phrases = [
-  "Web Developer",
-  "AI Antusias",
-  "Mahasiswa",
-  "UI/UX Design",
+  "Vibe Coder → Production Ready",
+  "AI-Assisted Full-Stack Dev",
+  "Laravel & CodeIgniter Builder",
+  "HANSCO Digital Founder",
 ];
 let phraseIndex = 0;
 let charIndex = 0;
@@ -187,6 +187,17 @@ const statsObserver = new IntersectionObserver(
 const statsStrip = document.querySelector(".stats-strip");
 if (statsStrip) statsObserver.observe(statsStrip);
 
+// Fallback: trigger counters on load if already visible in viewport
+window.addEventListener("load", () => {
+  if (statsStrip) {
+    const rect = statsStrip.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (inView) {
+      statsStrip.querySelectorAll(".stat-number").forEach(animateCounter);
+    }
+  }
+});
+
 // 6. Reveal + scroll events combined
 window.addEventListener("scroll", reveal);
 
@@ -311,6 +322,17 @@ function initTilt() {
       glare: true,
       "max-glare": 0.07,
       scale: 1.015,
+      gyroscope: false,
+    });
+
+    // Workflow Cards — medium tilt
+    VanillaTilt.init(document.querySelectorAll(".workflow-card"), {
+      max: 6,
+      speed: 400,
+      perspective: 900,
+      glare: true,
+      "max-glare": 0.1,
+      scale: 1.03,
       gyroscope: false,
     });
   }
