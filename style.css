@@ -379,11 +379,11 @@ body {
   }
 }
 
-/* Stacking container for the two photos - large, un-wrapped, faded bottom */
+/* Stacking container for the two photos - square to prevent cropping sides */
 .photo-reveal-container {
   position: relative;
-  width: 420px;
-  height: 520px;
+  width: 500px;
+  height: 500px;
   overflow: hidden;
   cursor: crosshair;
   user-select: none;
@@ -393,6 +393,7 @@ body {
   mask-image: linear-gradient(to bottom, black 70%, transparent 98%);
   pointer-events: auto;
 }
+
 
 /* Both layers fill the container */
 .photo-layer {
@@ -595,8 +596,8 @@ body {
   }
 
   .photo-reveal-container {
-    width: 270px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
     border-radius: 0;
   }
 
