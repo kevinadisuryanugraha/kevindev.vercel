@@ -50,8 +50,8 @@
   --text-light: #1e293b;
   --border-color: #2a3a4e;
   --border-light: #1e2d3d;
-  --badge-bg: rgba(37, 99, 235, 0.15);
-  --badge-border: rgba(37, 99, 235, 0.25);
+  --badge-bg: rgba(var(--primary-rgb), 0.15);
+  --badge-border: rgba(var(--primary-rgb), 0.25);
   --input-bg: #1a2332;
   --nav-bg: rgba(11, 17, 33, 0.9);
   --nav-scrolled: rgba(11, 17, 33, 0.97);
@@ -892,27 +892,18 @@ body {
 }
 
 .masonry-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.masonry-row > .col-md-6 {
-  flex: 1 1 calc(50% - 10px);
-  max-width: calc(50% - 10px);
-}
-
-@media (max-width: 768px) {
-  .masonry-row > .col-md-6 {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-}
-
-.cert-masonry-grid {
   column-count: 3;
   column-gap: 20px;
 }
+
+@media (max-width: 992px) {
+  .masonry-row { column-count: 2; }
+}
+
+@media (max-width: 576px) {
+  .masonry-row { column-count: 1; }
+}
+
 
 .cert-card-masonry {
   break-inside: avoid;
@@ -954,13 +945,6 @@ body {
   color: var(--text-muted);
 }
 
-@media (max-width: 992px) {
-  .cert-masonry-grid { column-count: 2; }
-}
-
-@media (max-width: 576px) {
-  .cert-masonry-grid { column-count: 1; }
-}
 
 .org-card-v2 {
   background: var(--card-bg);
@@ -1414,6 +1398,7 @@ body {
 }
 
 body,
+body *,
 .navbar,
 .card-custom,
 .card-custom::before,
@@ -1427,7 +1412,7 @@ body,
 .contact-info-card .contact-card-arrow,
 .footer .footer-socials a,
 .hero-social-link,
-.hero-photo-wrapper .photo-reveal-container .reveal-hint,
+.reveal-hint,
 .contact-form .form-control {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
 }
