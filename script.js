@@ -1,4 +1,3 @@
-// 1. Typing Effect Logic
 const textElement = document.getElementById("typewriter");
 const phrases = [
   "Vibe Coder → Production Ready",
@@ -37,34 +36,31 @@ function type() {
   setTimeout(type, typeSpeed);
 }
 
-// 2. Scroll Animation (Reveal on Scroll)
-function reveal() {
-  var reveals = document.querySelectorAll(".reveal");
-  for (var i = 0; i < reveals.length; i++) {
-    var windowHeight = window.innerHeight;
-    var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 120;
-    if (elementTop < windowHeight - elementVisible) {
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal");
+  const viewportHeight = window.innerHeight;
+  for (let i = 0; i < reveals.length; i++) {
+    const elementTop = reveals[i].getBoundingClientRect().top;
+    const offset = 120;
+    if (elementTop < viewportHeight - offset) {
       reveals[i].classList.add("active");
     }
   }
 }
 
-// 3. Navbar Background Change on Scroll
 const navbar = document.querySelector(".navbar");
 window.addEventListener("scroll", () => {
   navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// 4. Navbar Active Link on Scroll (Scroll Spy)
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".nav-link");
 
 function updateActiveNav() {
   const scrollY = window.scrollY;
-  const offset = 120; // account for fixed navbar height
-
+  const offset = 120;
   let current = "";
+
   sections.forEach((section) => {
     const sectionTop = section.offsetTop - offset;
     const sectionHeight = section.offsetHeight;
@@ -83,9 +79,8 @@ function updateActiveNav() {
 }
 
 window.addEventListener("scroll", updateActiveNav);
-updateActiveNav(); // run on load too
+updateActiveNav();
 
-// 5. Scroll-to-Top Button
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 
 window.addEventListener("scroll", () => {
@@ -100,13 +95,11 @@ scrollTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// 6. Portfolio Filter
 const filterBtns = document.querySelectorAll(".filter-btn");
 const portfolioItems = document.querySelectorAll(".portfolio-item");
 
 filterBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    // Update active button
     filterBtns.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
 
@@ -118,7 +111,6 @@ filterBtns.forEach((btn) => {
 
       if (match) {
         item.style.display = "block";
-        // Animate in
         requestAnimationFrame(() => {
           item.style.opacity = "0";
           item.style.transform = "scale(0.9) translateY(20px)";
@@ -138,7 +130,6 @@ filterBtns.forEach((btn) => {
       }
     });
 
-    // Re-init VanillaTilt on newly visible cards after filter
     setTimeout(() => {
       if (typeof VanillaTilt !== "undefined" && window.matchMedia("(hover: hover)").matches) {
         const visibleCards = document.querySelectorAll(".portfolio-item:not([style*='display: none']) .portfolio-card-v2");
@@ -151,7 +142,6 @@ filterBtns.forEach((btn) => {
   });
 });
 
-// 7. Count-Up Animation (Stats Strip)
 function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
@@ -172,7 +162,6 @@ function animateCounter(el) {
   requestAnimationFrame(update);
 }
 
-// Trigger counters when stats strip enters viewport
 const statsObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -188,7 +177,6 @@ const statsObserver = new IntersectionObserver(
 const statsStrip = document.querySelector(".stats-strip");
 if (statsStrip) statsObserver.observe(statsStrip);
 
-// Fallback: trigger counters on load if already visible in viewport
 window.addEventListener("load", () => {
   if (statsStrip) {
     const rect = statsStrip.getBoundingClientRect();
@@ -199,10 +187,8 @@ window.addEventListener("load", () => {
   }
 });
 
-// 6. Reveal + scroll events combined
-window.addEventListener("scroll", reveal);
+window.addEventListener("scroll", revealOnScroll);
 
-// 7. Form Handling (Direct to WhatsApp)
 let formSubmitting = false;
 
 function handleForm(e) {
@@ -237,7 +223,6 @@ function handleForm(e) {
   return false;
 }
 
-// 8. Mobile Navbar: Close on link click
 const navbarCollapse = document.getElementById("navbarNav");
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
@@ -250,11 +235,10 @@ navLinks.forEach((link) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   type();
-  reveal();
+  revealOnScroll();
   initTheme();
 });
 
-// 9. Dark Mode Toggle
 const STORAGE_KEY = "kevin-porto-theme";
 
 function initTheme() {
@@ -277,74 +261,34 @@ function toggleTheme() {
 
 document.getElementById("themeToggle").addEventListener("click", toggleTheme);
 
-// 10. Vanilla Tilt 3D Effect — initialize after DOM is ready
+const tiltConfigs = [
+  { selector: ".portfolio-card-v2", max: 8, speed: 400, perspective: 800, glare: true, maxGlare: 0.15, scale: 1.04 },
+  { selector: ".card-custom", max: 5, speed: 500, perspective: 1000, glare: true, maxGlare: 0.08, scale: 1.02 },
+  { selector: ".org-card-v2", max: 6, speed: 400, perspective: 900, glare: true, maxGlare: 0.1, scale: 1.025 },
+  { selector: ".cert-card-masonry", max: 5, speed: 600, perspective: 1000, glare: true, maxGlare: 0.07, scale: 1.015 },
+  { selector: ".workflow-card", max: 6, speed: 400, perspective: 900, glare: true, maxGlare: 0.1, scale: 1.03 },
+];
+
 function initTilt() {
-  // Only init on non-touch devices for best UX
-  if (window.matchMedia("(hover: hover)").matches && typeof VanillaTilt !== "undefined") {
+  const hasHover = window.matchMedia("(hover: hover)").matches;
+  const tiltExists = typeof VanillaTilt !== "undefined";
+  if (!hasHover || !tiltExists) return;
 
-    // Portfolio Cards — most dramatic tilt + glare
-    VanillaTilt.init(document.querySelectorAll(".portfolio-card-v2"), {
-      max: 8,
-      speed: 400,
-      perspective: 800,
-      glare: true,
-      "max-glare": 0.15,
-      scale: 1.04,
+  tiltConfigs.forEach((config) => {
+    VanillaTilt.init(document.querySelectorAll(config.selector), {
+      max: config.max,
+      speed: config.speed,
+      perspective: config.perspective,
+      glare: config.glare,
+      "max-glare": config.maxGlare,
+      scale: config.scale,
       gyroscope: false,
     });
-
-    // Skill Cards — subtle tilt
-    VanillaTilt.init(document.querySelectorAll(".card-custom"), {
-      max: 5,
-      speed: 500,
-      perspective: 1000,
-      glare: true,
-      "max-glare": 0.08,
-      scale: 1.02,
-      gyroscope: false,
-    });
-
-    // Organization Cards — medium tilt
-    VanillaTilt.init(document.querySelectorAll(".org-card-v2"), {
-      max: 6,
-      speed: 400,
-      perspective: 900,
-      glare: true,
-      "max-glare": 0.1,
-      scale: 1.025,
-      gyroscope: false,
-    });
-
-    // Certificate Cards — gentle tilt (many cards, keep subtle)
-    VanillaTilt.init(document.querySelectorAll(".cert-card-masonry"), {
-      max: 5,
-      speed: 600,
-      perspective: 1000,
-      glare: true,
-      "max-glare": 0.07,
-      scale: 1.015,
-      gyroscope: false,
-    });
-
-    // Workflow Cards — medium tilt
-    VanillaTilt.init(document.querySelectorAll(".workflow-card"), {
-      max: 6,
-      speed: 400,
-      perspective: 900,
-      glare: true,
-      "max-glare": 0.1,
-      scale: 1.03,
-      gyroscope: false,
-    });
-  }
+  });
 }
 
-// Wait for Vanilla Tilt script to load then init
 window.addEventListener("load", initTilt);
 
-// =====================================================
-// PHOTO REVEAL EFFECT — Cursor Spotlight
-// =====================================================
 (function initPhotoReveal() {
   const container = document.getElementById("photoReveal");
   if (!container) return;
@@ -352,31 +296,29 @@ window.addEventListener("load", initTilt);
   const photoBot = document.getElementById("photoBot");
   if (!photoBot) return;
 
-  const REVEAL_RADIUS = 100; // Spotlight hole radius in px
-  const SOFT_EDGE     = 15;  // Edge softness transition in px
-  const EASE          = 0.15; // Smooth transition speed
+  const REVEAL_RADIUS = 100;
+  const SOFT_EDGE = 15;
+  const EASE = 0.15;
 
-  let currentR = 0;   // Animated radius
-  let targetR  = 0;   // Target radius
-  let curX = 0, curY = 0; // Cursor position relative to container
+  let currentR = 0;
+  let targetR = 0;
+  let curX = 0;
+  let curY = 0;
   let animRaf = null;
   let isInside = false;
 
-  // Apply CSS mask-image directly to the top photo element
   function applyMask(x, y, r) {
     if (r < 0.5) {
       photoBot.style.webkitMaskImage = "radial-gradient(circle 0px, transparent, transparent)";
-      photoBot.style.maskImage       = "radial-gradient(circle 0px, transparent, transparent)";
+      photoBot.style.maskImage = "radial-gradient(circle 0px, transparent, transparent)";
       return;
     }
     const softStart = Math.max(0, r - SOFT_EDGE);
-    // spotlight mask: solid black inside the circle, transparent outside
     const gradient = `radial-gradient(circle ${Math.round(r)}px at ${Math.round(x)}px ${Math.round(y)}px, black ${Math.round(softStart)}px, transparent ${Math.round(r)}px)`;
     photoBot.style.webkitMaskImage = gradient;
-    photoBot.style.maskImage       = gradient;
+    photoBot.style.maskImage = gradient;
   }
 
-  // Smooth animation loop
   function animate() {
     currentR += (targetR - currentR) * EASE;
     if (Math.abs(targetR - currentR) < 0.2) {
@@ -391,11 +333,10 @@ window.addEventListener("load", initTilt);
       animRaf = null;
       if (currentR < 0.5) {
         photoBot.style.webkitMaskImage = "radial-gradient(circle 0px, transparent, transparent)";
-        photoBot.style.maskImage       = "radial-gradient(circle 0px, transparent, transparent)";
+        photoBot.style.maskImage = "radial-gradient(circle 0px, transparent, transparent)";
       }
     }
   }
-
 
   function startAnimate() {
     if (!animRaf) animRaf = requestAnimationFrame(animate);
@@ -404,12 +345,9 @@ window.addEventListener("load", initTilt);
   container.addEventListener("mouseenter", (e) => {
     isInside = true;
     targetR = REVEAL_RADIUS;
-    
-    // Set initial position immediately on enter to prevent flicker
     const rect = container.getBoundingClientRect();
     curX = e.clientX - rect.left;
     curY = e.clientY - rect.top;
-    
     startAnimate();
   });
 
@@ -423,13 +361,11 @@ window.addEventListener("load", initTilt);
     const rect = container.getBoundingClientRect();
     curX = e.clientX - rect.left;
     curY = e.clientY - rect.top;
-
     if (isInside && currentR > 0) {
       applyMask(curX, curY, currentR);
     }
   });
 
-  // Touch support for mobile devices
   container.addEventListener("touchstart", (e) => {
     isInside = true;
     targetR = REVEAL_RADIUS;
