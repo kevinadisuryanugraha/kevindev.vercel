@@ -376,21 +376,11 @@ body {
   z-index: 1;
 }
 
-/* Top layer — real Kevin, masked with cursor "hole" */
+/* Top layer — real Kevin, always fully visible by default.
+   Mask is applied dynamically via JavaScript on mousemove. */
 .photo-top {
   z-index: 2;
-  /* Initial: no hole (cursor off screen) */
-  -webkit-mask-image: radial-gradient(
-    circle var(--reveal-r, 0px) at var(--cx, -200px) var(--cy, -200px),
-    transparent calc(var(--reveal-r, 0px) - 4px),
-    black var(--reveal-r, 0px)
-  );
-  mask-image: radial-gradient(
-    circle var(--reveal-r, 0px) at var(--cx, -200px) var(--cy, -200px),
-    transparent calc(var(--reveal-r, 0px) - 4px),
-    black var(--reveal-r, 0px)
-  );
-  transition: -webkit-mask-image 0.05s linear, mask-image 0.05s linear;
+  /* NO static mask-image here — JS handles it */
 }
 
 /* Override old rule so photo-layer doesn't get old box-shadow */
@@ -430,11 +420,13 @@ body {
   box-shadow: 0 0 20px rgba(37, 99, 235, 0.5), inset 0 0 20px rgba(37, 99, 235, 0.1);
   pointer-events: none;
   z-index: 10;
+  /* Center the orb on the cursor */
   transform: translate(-50%, -50%);
-  left: var(--cx, -200px);
-  top: var(--cy, -200px);
-  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
-  opacity: 0;
+  /* Initial position off-screen — JS will set left/top */
+  left: -300px;
+  top: -300px;
+  transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease;
+  opacity: 0; /* JS sets opacity: 1 on mouseenter */
   mix-blend-mode: normal;
 }
 
@@ -450,11 +442,6 @@ body {
   color: rgba(37, 99, 235, 0.9);
   letter-spacing: 1px;
   font-family: "Poppins", sans-serif;
-}
-
-/* Show orb when hovering container */
-.photo-reveal-container:hover .cursor-orb {
-  opacity: 1;
 }
 
 /* Reveal hint badge */
