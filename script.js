@@ -12,6 +12,7 @@ let isDeleting = false;
 let typeSpeed = 100;
 
 function type() {
+  if (!textElement) return;
   const currentPhrase = phrases[phraseIndex];
 
   if (isDeleting) {

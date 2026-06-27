@@ -90,11 +90,15 @@
   </head>
   <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="85" style="position: relative">
     <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#"
-          >Kevin<span style="color: var(--secondary-color)">.Dev</span></a
-        >
+      <div class="container navbar-container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+          Kevin<span style="color: var(--primary-color)">.Dev</span>
+        </a>
+        
+        <!-- Toggle button for mobile -->
         <button
           class="navbar-toggler"
           type="button"
@@ -103,115 +107,97 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#home">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">Tentang</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#skills">Keahlian</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Portofolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#experience">Pengalaman</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#organization">Organisasi</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#workflow">Workflow</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#certificates">Sertifikat</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Kontak</a>
-            </li>
-          </ul>
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-            <i class="fas fa-moon"></i>
-            <i class="fas fa-sun"></i>
-          </button>
+        
+        <!-- Navbar collapse menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Center menu wrapper -->
+          <div class="navbar-center-pill mx-auto">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#home">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">Tentang</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#portfolio">Portofolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#experience">Pengalaman</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Kontak</a>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Right side status indicator & theme toggle -->
+          <div class="navbar-right-status d-flex align-items-center gap-3">
+            <a href="#contact" class="status-btn">
+              <span class="status-dot"></span>Open for Work
+            </a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+              <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
 
-    <!-- HERO SECTION (CYBERPUNK SPLIT REDESIGN) -->
+    <!-- HERO SECTION (PUREFLOW CLEAN LAYOUT) -->
     <section id="home">
-      <!-- Decorative background blobs -->
-      <div class="hero-bg-blob blob-1"></div>
-      <div class="hero-bg-blob blob-2"></div>
-      <div class="hero-bg-blob blob-3"></div>
+      <!-- Grid overlay -->
       <div class="hero-grid-overlay"></div>
 
       <div class="container position-relative z-1">
         <div class="row align-items-center flex-column-reverse flex-lg-row">
-          <!-- Text Column -->
-          <div class="col-lg-6 mt-5 mt-lg-0 text-center text-lg-start">
-            <span class="cyber-tagline">Gateway to your augmented workflow</span>
-            <h1 class="cyber-title">
-              A window of coming enhancements
+          
+          <!-- Text Column (Left) -->
+          <div class="col-lg-5 text-column-pureflow text-center text-lg-start z-index-20">
+            <span class="pure-tagline">Kevin Adisurya</span>
+            <h1 class="pure-title">
+              Clean Code,<br>Clear Mind.<br>Anywhere.
             </h1>
-            <p class="cyber-desc">
-              A future where carbon fiber, Laravel, and human instinct align.
-              Not machine. Not human. Something wonderfully poised between.
-            </p>
-            <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-              <a href="#contact" class="btn-cyber-primary">Reserve Now</a>
-              <a href="#portfolio" class="btn-cyber-secondary">Explore Works</a>
+            <div class="pure-buttons d-flex align-items-center gap-4 justify-content-center justify-content-lg-start">
+              <a href="#contact" class="btn-pure-discover">Discover</a>
+              <a href="assets/CvAtsKevinAdisurya.pdf" download="CV_Kevin_Adisurya_Nugraha.pdf" class="btn-pure-specs">
+                <i class="fas fa-play me-2 text-primary fs-7"></i>View Specs
+              </a>
             </div>
           </div>
 
-          <!-- Image Column with HUD Overlay -->
-          <div class="col-lg-6 d-flex justify-content-center align-items-center position-relative">
-            <div class="hud-container">
-              <!-- HUD Circles -->
-              <div class="hud-circle circle-1">
-                <span class="hud-label label-1">10+ YEARS REAL</span>
-              </div>
-              <div class="hud-circle circle-2">
-                <span class="hud-label label-2">40+ USE FORMS</span>
-              </div>
-              <div class="hud-circle circle-3">
-                <span class="hud-label label-3">95% REPEAT MEMBERS</span>
-              </div>
-
-              <!-- Cursor Photo Reveal Container -->
-              <div class="photo-reveal-container" id="photoReveal">
-                <!-- Layer bottom: AI version (2.png) -->
-                <img
-                  src="assets/image/2.png"
-                  alt="Kevin AI Version"
-                  class="photo-layer photo-bot"
-                  draggable="false"
-                  id="photoBot"
-                />
-                <!-- Layer top: Real Kevin (1.png) — masked at cursor -->
-                <img
-                  src="assets/image/1.png"
-                  alt="Kevin Adisurya"
-                  class="photo-layer photo-top"
-                  id="photoTop"
-                  draggable="false"
-                />
-                <!-- Hint badge -->
-                <div class="reveal-hint" id="revealHint">
-                  <i class="fas fa-magic"></i> Hover me!
-                </div>
+          <!-- Image Column (Right/Center, Large portrait) -->
+          <div class="col-lg-7 d-flex justify-content-center align-items-center position-relative">
+            <!-- Cursor Photo Reveal Container -->
+            <div class="photo-reveal-container" id="photoReveal">
+              <!-- Layer bottom: AI version (2.png) -->
+              <img
+                src="assets/image/2.png"
+                alt="Kevin AI Version"
+                class="photo-layer photo-bot"
+                draggable="false"
+                id="photoBot"
+              />
+              <!-- Layer top: Real Kevin (1.png) — masked at cursor -->
+              <img
+                src="assets/image/1.png"
+                alt="Kevin Adisurya"
+                class="photo-layer photo-top"
+                id="photoTop"
+                draggable="false"
+              />
+              <!-- Hint badge -->
+              <div class="reveal-hint" id="revealHint">
+                <i class="fas fa-magic"></i> Hover me!
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
+
 
 
 
