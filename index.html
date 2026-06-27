@@ -144,65 +144,77 @@
       </div>
     </nav>
 
-    <!-- HERO SECTION (CYBERPUNK REDESIGN) -->
+    <!-- HERO SECTION (CLEAN CENTERED DESIGN) -->
     <section id="home">
+      <!-- Decorative background blobs -->
+      <div class="hero-bg-blob blob-1"></div>
+      <div class="hero-bg-blob blob-2"></div>
+      <div class="hero-bg-blob blob-3"></div>
+      <div class="hero-grid-overlay"></div>
+
       <div class="container position-relative z-1">
-        <div class="row align-items-center flex-column-reverse flex-lg-row">
-          <!-- Text Column -->
-          <div class="col-lg-6 mt-5 mt-lg-0 text-center text-lg-start">
-            <span class="cyber-tagline">Gateway to your augmented workflow</span>
-            <h1 class="cyber-title">
-              A window of coming enhancements
-            </h1>
-            <p class="cyber-desc">
-              A future where carbon fiber, Laravel, and human instinct align.
-              Not machine. Not human. Something wonderfully poised between.
-            </p>
-            <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-              <a href="#contact" class="btn-cyber-primary">Reserve Now</a>
-              <a href="#portfolio" class="btn-cyber-secondary">Explore Works</a>
+        <div class="hero-content text-center">
+
+          <!-- Photo with Cursor Spotlight Reveal -->
+          <div class="hero-photo-wrapper">
+            <div class="hero-ring ring-1"></div>
+            <div class="hero-ring ring-2"></div>
+            <div class="photo-reveal-container" id="photoReveal">
+              <img
+                src="assets/image/2.png"
+                alt="Kevin AI Version"
+                class="photo-layer photo-bot"
+                draggable="false"
+                id="photoBot"
+              />
+              <img
+                src="assets/image/1.png"
+                alt="Kevin Adisurya"
+                class="photo-layer photo-top"
+                id="photoTop"
+                draggable="false"
+              />
+              <div class="reveal-hint" id="revealHint">
+                <i class="fas fa-magic"></i> Hover me!
+              </div>
             </div>
           </div>
 
-          <!-- Image Column with HUD Overlay -->
-          <div class="col-lg-6 d-flex justify-content-center align-items-center position-relative">
-            <div class="hud-container">
-              <!-- HUD Circles -->
-              <div class="hud-circle circle-1">
-                <span class="hud-label label-1">10+ YEARS REAL</span>
-              </div>
-              <div class="hud-circle circle-2">
-                <span class="hud-label label-2">40+ USE FORMS</span>
-              </div>
-              <div class="hud-circle circle-3">
-                <span class="hud-label label-3">95% REPEAT MEMBERS</span>
-              </div>
+          <!-- Name & Title -->
+          <h1 class="hero-name">Kevin Adisurya Nugraha</h1>
+          <p class="hero-role">
+            <span id="typewriter"></span>
+          </p>
+          <p class="hero-tagline">
+            AI-Assisted Full-Stack Developer &middot; Founder @ HANSCO Digital
+          </p>
 
-              <!-- Cursor Photo Reveal Container -->
-              <div class="photo-reveal-container" id="photoReveal">
-                <!-- Layer bottom: AI version (2.png) -->
-                <img
-                  src="assets/image/2.png"
-                  alt="Kevin AI Version"
-                  class="photo-layer photo-bot"
-                  draggable="false"
-                  id="photoBot"
-                />
-                <!-- Layer top: Real Kevin (1.png) — masked at cursor -->
-                <img
-                  src="assets/image/1.png"
-                  alt="Kevin Adisurya"
-                  class="photo-layer photo-top"
-                  id="photoTop"
-                  draggable="false"
-                />
-                <!-- Hint badge -->
-                <div class="reveal-hint" id="revealHint">
-                  <i class="fas fa-magic"></i> Hover me!
-                </div>
-              </div>
-            </div>
+          <!-- CTA Buttons -->
+          <div class="hero-buttons">
+            <a href="#contact" class="btn-hero-primary">
+              <i class="fas fa-paper-plane me-2"></i>Hubungi Saya
+            </a>
+            <a href="#portfolio" class="btn-hero-secondary">
+              <i class="fas fa-folder-open me-2"></i>Portofolio
+            </a>
           </div>
+
+          <!-- Social Links -->
+          <div class="hero-socials">
+            <a href="https://github.com/kevinadisuryanugraha" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/kevin-adisurya-nugraha/" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.instagram.com/kvn.ads/" target="_blank" rel="noopener noreferrer" class="hero-social-link" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:habeelkevin@gmail.com" class="hero-social-link" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
