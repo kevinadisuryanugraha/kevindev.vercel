@@ -242,12 +242,30 @@
           <div class="col-lg-5 text-center">
             <div class="hero-visual">
               <div class="hero-img-wrapper">
-                <!-- Main Image -->
-                <img
-                  src="assets/image/Kevin_Adisurya_Nugraha.jpg"
-                  alt="Kevin Adisurya"
-                  class="hero-main-img"
-                />
+                <!-- Cursor Reveal Dual Photo -->
+                <div class="photo-reveal-container" id="photoReveal">
+                  <!-- Layer 1 (bottom): AI Robot version -->
+                  <img
+                    src="assets/image/Kevin_AI_Robot.png"
+                    alt="Kevin AI Version"
+                    class="hero-main-img photo-layer photo-bot"
+                    draggable="false"
+                  />
+                  <!-- Layer 2 (top): Real Kevin — mask reveals bottom on cursor -->
+                  <img
+                    src="assets/image/Kevin_Adisurya_Nugraha.jpg"
+                    alt="Kevin Adisurya"
+                    class="hero-main-img photo-layer photo-top"
+                    id="photoTop"
+                    draggable="false"
+                  />
+                  <!-- Reveal hint badge -->
+                  <div class="reveal-hint" id="revealHint">
+                    <i class="fas fa-magic"></i> Hover me!
+                  </div>
+                  <!-- Cursor glow orb -->
+                  <div class="cursor-orb" id="cursorOrb"></div>
+                </div>
 
                 <!-- Floating Elements -->
                 <!-- Icon 1: Laravel -->

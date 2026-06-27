@@ -340,7 +340,7 @@ body {
   50% { opacity: 0; }
 }
 
-/* --- Hero Image Composition --- */
+/* --- Hero Image: Photo Reveal System --- */
 .hero-visual {
   position: relative;
   z-index: 1;
@@ -348,22 +348,177 @@ body {
   justify-content: center;
 }
 
+.photo-reveal-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: none; /* hide system cursor inside container */
+}
+
+.photo-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Bottom layer — AI Robot always visible */
+.photo-bot {
+  z-index: 1;
+}
+
+/* Top layer — real Kevin, masked with cursor "hole" */
+.photo-top {
+  z-index: 2;
+  /* Initial: no hole (cursor off screen) */
+  -webkit-mask-image: radial-gradient(
+    circle var(--reveal-r, 0px) at var(--cx, -200px) var(--cy, -200px),
+    transparent calc(var(--reveal-r, 0px) - 4px),
+    black var(--reveal-r, 0px)
+  );
+  mask-image: radial-gradient(
+    circle var(--reveal-r, 0px) at var(--cx, -200px) var(--cy, -200px),
+    transparent calc(var(--reveal-r, 0px) - 4px),
+    black var(--reveal-r, 0px)
+  );
+  transition: -webkit-mask-image 0.05s linear, mask-image 0.05s linear;
+}
+
+/* Override old rule so photo-layer doesn't get old box-shadow */
+.photo-reveal-container .hero-main-img {
+  border: none;
+  box-shadow: none;
+}
+
+/* Outer wrapper still carries the shadow */
 .hero-img-wrapper {
   position: relative;
   width: 400px;
   height: 480px;
+  border-radius: 30px;
+  border: 8px solid var(--card-bg);
+  box-shadow: 20px 20px 50px var(--shadow-xl), -10px -10px 30px var(--shadow-sm);
+  overflow: hidden;
 }
 
+/* Fallback for old .hero-main-img usage (about section) */
 .hero-main-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 30px;
-  border: 8px solid var(--card-bg);
-  box-shadow: 20px 20px 50px var(--shadow-xl),
-    -10px -10px 30px var(--shadow-sm);
+  border-radius: 22px;
   position: relative;
   z-index: 2;
+}
+
+/* Cursor glowing orb */
+.cursor-orb {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 99, 235, 0.7);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.5), inset 0 0 20px rgba(37, 99, 235, 0.1);
+  pointer-events: none;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  left: var(--cx, -200px);
+  top: var(--cy, -200px);
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
+  opacity: 0;
+  mix-blend-mode: normal;
+}
+
+/* AI label inside orb */
+.cursor-orb::after {
+  content: 'AI';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: rgba(37, 99, 235, 0.9);
+  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Show orb when hovering container */
+.photo-reveal-container:hover .cursor-orb {
+  opacity: 1;
+}
+
+/* Reveal hint badge */
+.reveal-hint {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 20;
+  background: rgba(37, 99, 235, 0.9);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  font-family: "Poppins", sans-serif;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  animation: hint-bounce 2s ease-in-out infinite;
+}
+
+@keyframes hint-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Hide hint when hovering */
+.photo-reveal-container:hover .reveal-hint {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: none;
+}
+
+/* Touch device fallback: animate the reveal automatically */
+@media (hover: none) {
+  .photo-top {
+    -webkit-mask-image: radial-gradient(
+      circle 120px at 50% 35%,
+      transparent 90px,
+      black 120px
+    );
+    mask-image: radial-gradient(
+      circle 120px at 50% 35%,
+      transparent 90px,
+      black 120px
+    );
+    transition: none;
+  }
+
+  .cursor-orb { display: none; }
+
+  .reveal-hint {
+    animation: hint-bounce 2s ease-in-out infinite;
+  }
+}
+
+/* Responsive: shrink wrapper on small screens */
+@media (max-width: 768px) {
+  .hero-img-wrapper {
+    width: 280px;
+    height: 340px;
+    border-width: 5px;
+  }
 }
 
 /* Floating Elements */
