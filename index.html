@@ -90,15 +90,11 @@
   </head>
   <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="85" style="position: relative">
     <!-- Navbar -->
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container navbar-container">
-        <!-- Logo -->
-        <a class="navbar-brand" href="#">
-          Kevin<span style="color: var(--primary-color)">.Dev</span>
-        </a>
-        
-        <!-- Toggle button for mobile -->
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          >Kevin<span style="color: var(--secondary-color)">.Dev</span></a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -107,43 +103,47 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        
-        <!-- Navbar collapse menu -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <!-- Center menu wrapper -->
-          <div class="navbar-center-pill mx-auto">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#home">Beranda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">Tentang</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#portfolio">Portofolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#experience">Pengalaman</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">Kontak</a>
-              </li>
-            </ul>
-          </div>
-          
-          <!-- Right side status indicator & theme toggle -->
-          <div class="navbar-right-status d-flex align-items-center gap-3">
-            <a href="#contact" class="status-btn">
-              <span class="status-dot"></span>Open for Work
-            </a>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-              <i class="fas fa-moon"></i>
-              <i class="fas fa-sun"></i>
-            </button>
-          </div>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Keahlian</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portofolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#experience">Pengalaman</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#organization">Organisasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#workflow">Workflow</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#certificates">Sertifikat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Kontak</a>
+            </li>
+          </ul>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+          </button>
         </div>
       </div>
     </nav>
+
 
     <!-- HERO SECTION (PUREFLOW CLEAN LAYOUT) -->
     <section id="home">

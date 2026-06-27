@@ -253,107 +253,42 @@ body {
    PUREFLOW LAYOUT NAVBAR & HERO STYLING (THEME AWARE)
    ===================================================== */
 
-/* --- Sleek Floating Pill Navbar --- */
+/* --- Navbar Styling --- */
 .navbar {
-  background: transparent;
-  backdrop-filter: none;
-  border-bottom: none;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
   transition: all 0.3s ease;
-  padding: 20px 0;
 }
 
-/* Scrolled state */
 .navbar.scrolled {
-  padding: 12px 0;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  background: var(--nav-scrolled);
+  box-shadow: var(--shadow-md);
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
 }
 
-[data-theme="dark"] .navbar.scrolled {
-  background: rgba(11, 17, 33, 0.7);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--secondary-color) !important;
+  letter-spacing: -0.5px;
 }
 
-.navbar-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Center Pill Nav Menu */
-.navbar-center-pill {
-  background: #0f172a; /* Solid dark slate for premium mockup contrast */
-  border-radius: 30px;
-  padding: 5px 12px;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.navbar-center-pill .navbar-nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-}
-
-.navbar-center-pill .nav-link {
-  color: rgba(255, 255, 255, 0.65) !important;
-  font-size: 0.88rem;
+.navbar-nav .nav-link {
+  color: var(--text-secondary) !important;
   font-weight: 500;
-  padding: 8px 18px !important;
-  border-radius: 30px;
+  padding: 8px 16px !important;
   transition: all 0.25s ease;
-  text-align: center;
+  border-radius: 8px;
 }
 
-.navbar-center-pill .nav-link:hover {
-  color: #ffffff !important;
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--primary-color) !important;
+  background: rgba(var(--primary-rgb), 0.05);
 }
 
-/* Active Page Pill (Bootstrap Scrollspy Integration) */
-.navbar-center-pill .nav-link.active {
-  background: #ffffff;
-  color: #0f172a !important;
-  font-weight: 600;
-}
-
-/* Right Status Pill Button */
-.status-btn {
-  background: #0f172a;
-  color: #ffffff !important;
-  border-radius: 30px;
-  padding: 9px 20px;
-  font-weight: 600;
-  font-size: 0.88rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.25s ease;
-}
-
-.status-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #22c55e; /* green indicator */
-  box-shadow: 0 0 8px #22c55e;
-  animation: pulse-green-dot 2s infinite;
-}
-
-@keyframes pulse-green-dot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.6; }
-}
 
 /* --- Hero Layout (#home) --- */
 #home {
@@ -670,46 +605,7 @@ body {
   box-shadow: 0 8px 20px rgba(var(--primary-rgb), 0.3);
 }
 
-/* Responsive */
-@media (max-width: 991px) {
-  .navbar-center-pill {
-    background: #0f172a;
-    border-radius: 20px;
-    padding: 10px 15px;
-    margin-top: 15px;
-    width: 100%;
-    box-shadow: none;
-  }
 
-  .navbar-center-pill .navbar-nav {
-    flex-direction: column;
-    gap: 4px;
-    width: 100%;
-  }
-
-  .navbar-center-pill .nav-link {
-    text-align: center;
-    width: 100%;
-    padding: 10px 0 !important;
-  }
-
-  .navbar-center-pill .nav-link.active {
-    background: #ffffff;
-    color: #0f172a !important;
-  }
-
-  .navbar-right-status {
-    margin-top: 15px;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .status-btn {
-    width: 100%;
-    max-width: 280px;
-    justify-content: center;
-  }
-}
 
 /* Responsive for Mobile */
 @media (max-width: 768px) {
