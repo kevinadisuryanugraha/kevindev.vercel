@@ -36,17 +36,19 @@ function type() {
   setTimeout(type, typeSpeed);
 }
 
-function revealOnScroll() {
-  const reveals = document.querySelectorAll(".reveal");
-  const viewportHeight = window.innerHeight;
-  for (let i = 0; i < reveals.length; i++) {
-    const elementTop = reveals[i].getBoundingClientRect().top;
-    const offset = 120;
-    if (elementTop < viewportHeight - offset) {
-      reveals[i].classList.add("active");
-    }
-  }
-}
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+);
+
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
 const navbar = document.querySelector(".navbar");
 window.addEventListener("scroll", () => {
@@ -166,8 +168,21 @@ const statsObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.querySelectorAll(".stat-number").forEach(animateCounter);
-        statsObserver.unobserve(entry.target);
+        const revealParent = entry.target.closest(".reveal");
+        if (revealParent && !revealParent.classList.contains("active")) {
+          const checkReveal = () => {
+            if (revealParent.classList.contains("active")) {
+              entry.target.querySelectorAll(".stat-number").forEach(animateCounter);
+              statsObserver.unobserve(entry.target);
+            } else {
+              requestAnimationFrame(checkReveal);
+            }
+          };
+          checkReveal();
+        } else {
+          entry.target.querySelectorAll(".stat-number").forEach(animateCounter);
+          statsObserver.unobserve(entry.target);
+        }
       }
     });
   },
@@ -176,18 +191,6 @@ const statsObserver = new IntersectionObserver(
 
 const statsStrip = document.querySelector(".stats-strip");
 if (statsStrip) statsObserver.observe(statsStrip);
-
-window.addEventListener("load", () => {
-  if (statsStrip) {
-    const rect = statsStrip.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (inView) {
-      statsStrip.querySelectorAll(".stat-number").forEach(animateCounter);
-    }
-  }
-});
-
-window.addEventListener("scroll", revealOnScroll);
 
 let formSubmitting = false;
 
@@ -210,7 +213,7 @@ function handleForm(e) {
   const message = document.getElementById("cf-message").value;
 
   const waNumber = "6289616682955";
-  const waText = `Halo Kevin, saya ${name} (${email}).%0A%0ASubjek: ${subject}%0A%0A${message}`;
+  const waText = `Halo Kevin, saya ${encodeURIComponent(name)} (${encodeURIComponent(email)}).\n\nSubjek: ${encodeURIComponent(subject)}\n\n${encodeURIComponent(message)}`;
   const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
 
   window.open(waUrl, "_blank");
@@ -235,7 +238,6 @@ navLinks.forEach((link) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   type();
-  revealOnScroll();
   initTheme();
 });
 
