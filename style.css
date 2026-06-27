@@ -331,52 +331,169 @@ body {
   pointer-events: none;
 }
 
-/* Centered content */
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  padding: 40px 0;
+/* --- CYBERPUNK HERO REDESIGN CLASSES --- */
+.cyber-tagline {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Photo wrapper with decorative rings */
-.hero-photo-wrapper {
+[data-theme="dark"] .cyber-tagline {
+  color: #fda4af; /* rose/pink in dark mode */
+}
+
+.cyber-title {
+  font-size: 3.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--secondary-color);
+  margin-bottom: 22px;
+  letter-spacing: -1.5px;
+  font-family: "Poppins", sans-serif;
+}
+
+[data-theme="dark"] .cyber-title {
+  color: #ffffff;
+}
+
+.cyber-desc {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 35px;
+  max-width: 500px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Cyber Button Styles (Theme Aware) */
+.btn-cyber-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 30px;
+  background-color: var(--secondary-color);
+  color: var(--body-bg);
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cyber-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.25);
+  color: var(--body-bg);
+}
+
+.btn-cyber-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 30px;
+  border: 2px solid var(--border-color);
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: 0.92rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-cyber-secondary:hover {
+  background: rgba(var(--primary-rgb), 0.08);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* HUD System Overlays (Theme Aware) */
+.hud-container {
   position: relative;
+  width: 500px;
+  height: 500px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  align-items: center;
 }
 
-.hero-ring {
+.hud-circle {
   position: absolute;
   border-radius: 50%;
-  border: 1.5px solid rgba(var(--primary-rgb), 0.15);
+  transform: translate(-50%, -50%);
   pointer-events: none;
+  z-index: 5;
+  top: 48%; /* centered on the photo */
+  left: 50%;
 }
 
-.ring-1 {
-  width: 420px;
-  height: 420px;
-  animation: ring-spin 30s linear infinite;
+.circle-1 {
+  width: 440px;
+  height: 440px;
+  border: 1px dashed rgba(var(--primary-rgb), 0.15);
+  animation: spin 60s linear infinite;
 }
 
-.ring-2 {
-  width: 470px;
-  height: 470px;
-  border-style: dashed;
-  animation: ring-spin 45s linear infinite reverse;
+[data-theme="dark"] .circle-1 {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-@keyframes ring-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.circle-2 {
+  width: 520px;
+  height: 520px;
+  border: 1px solid rgba(var(--primary-rgb), 0.08);
+}
+
+[data-theme="dark"] .circle-2 {
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.circle-3 {
+  width: 600px;
+  height: 600px;
+  border: 1px dotted rgba(var(--primary-rgb), 0.1);
+}
+
+[data-theme="dark"] .circle-3 {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* HUD Labels */
+.hud-label {
+  position: absolute;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  white-space: nowrap;
+  font-family: monospace;
+}
+
+[data-theme="dark"] .hud-label {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.label-1 {
+  top: 15%;
+  right: 12%;
+}
+
+.label-2 {
+  top: 50%;
+  right: -30px;
+}
+
+.label-3 {
+  bottom: 12%;
+  left: -20px;
 }
 
 /* Stacking container for the two photos - square to prevent cropping sides */
@@ -587,47 +704,57 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .hero-name {
-    font-size: 2.2rem;
+  .cyber-title {
+    font-size: 2.3rem;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
   }
 
-  .hero-role {
-    font-size: 1.1rem;
+  .cyber-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
   }
 
-  .hero-tagline {
-    font-size: 0.9rem;
-    padding: 0 20px;
+  .cyber-desc {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    padding: 0;
+  }
+
+  .hud-container {
+    width: 300px;
+    height: 300px;
+    margin-top: 20px;
+  }
+
+  .hud-circle,
+  .hud-label {
+    display: none; /* Hide wide concentric HUD rings on mobile to prevent overflow */
   }
 
   .photo-reveal-container {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     border-radius: 0;
   }
 
-  .ring-1 {
-    width: 340px;
-    height: 340px;
-  }
-
-  .ring-2 {
-    width: 380px;
-    height: 380px;
-  }
-
-  .hero-buttons {
+  .hero-buttons,
+  .d-flex.gap-3 {
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
-  .btn-hero-primary,
-  .btn-hero-secondary {
+  .btn-cyber-primary,
+  .btn-cyber-secondary {
     width: 100%;
     max-width: 280px;
     justify-content: center;
+    text-align: center;
+    margin: 5px 0 !important;
   }
 }
+
 
 /* --- Section Styling --- */
 .section-padding {
