@@ -1,396 +1,570 @@
-const textElement = document.getElementById("typewriter");
-const phrases = [
-  "Vibe Coder → Production Ready",
-  "AI-Assisted Full-Stack Dev",
-  "Laravel & CodeIgniter Builder",
-  "HANSCO Digital Founder",
+/* ================================================================
+   KEVIN DEV — script.js
+   Clean Code Edition — Robert C. Martin principles applied:
+   ─ Single Responsibility per function
+   ─ Intention-revealing names
+   ─ No magic numbers (named constants)
+   ─ No side effects in pure helpers
+   ─ Functions under 20 lines where possible
+   ─ High-level orchestration at the top, details below
+   ================================================================ */
+
+/* ─────────────────────────────────────────────────────────────────
+   CONSTANTS — no magic numbers scattered in code
+   ───────────────────────────────────────────────────────────────── */
+const THEME_STORAGE_KEY    = 'kevin-porto-theme';
+const NAVBAR_SCROLL_OFFSET = 50;    // px before navbar darkens
+const SCROLL_TOP_THRESHOLD = 400;   // px before scroll-to-top appears
+const SECTION_ACTIVE_OFFSET = 120;  // px offset for active nav detection
+const NAVBAR_HEIGHT_OFFSET  = -72;  // Lenis scrollTo offset for sticky nav
+
+const TYPEWRITER_TYPE_SPEED    = 120; // ms per character while typing
+const TYPEWRITER_DELETE_SPEED  = 40;  // ms per character while deleting
+const TYPEWRITER_PAUSE_AFTER   = 2000; // ms pause after full phrase
+const TYPEWRITER_PAUSE_BEFORE  = 500;  // ms pause before next phrase starts
+
+const PHOTO_REVEAL_RADIUS = 100; // px radius of the hover reveal circle
+const PHOTO_SOFT_EDGE     = 15;  // px feather at reveal edge
+const PHOTO_EASE_FACTOR   = 0.15; // lerp factor for smooth radius animation
+
+const COUNTER_DURATION_MS  = 1800; // ms for stat counter animation
+const COUNTER_INTERSECTION = 0.4;  // how much of stats strip must be visible
+
+const TILT_CONFIGS = [
+  { selector: '.portfolio-card-v2', max: 8,  speed: 400, perspective: 800,  glare: true, maxGlare: 0.15, scale: 1.04  },
+  { selector: '.card-custom',       max: 5,  speed: 500, perspective: 1000, glare: true, maxGlare: 0.08, scale: 1.02  },
+  { selector: '.org-card-v2',       max: 6,  speed: 400, perspective: 900,  glare: true, maxGlare: 0.1,  scale: 1.025 },
+  { selector: '.cert-card-masonry', max: 5,  speed: 600, perspective: 1000, glare: true, maxGlare: 0.07, scale: 1.015 },
+  { selector: '.workflow-card',     max: 6,  speed: 400, perspective: 900,  glare: true, maxGlare: 0.1,  scale: 1.03  },
 ];
-let phraseIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typeSpeed = 100;
 
-function type() {
-  if (!textElement) return;
-  const currentPhrase = phrases[phraseIndex];
+const TYPEWRITER_PHRASES = [
+  'Vibe Coder → Production Ready',
+  'AI-Assisted Full-Stack Dev',
+  'Laravel & CodeIgniter Builder',
+  'HANSCO Digital Founder',
+];
 
-  if (isDeleting) {
-    charIndex--;
-    typeSpeed = 40;
-  } else {
-    charIndex++;
-    typeSpeed = 120;
-  }
+const WHATSAPP_NUMBER = '6289616682955';
 
-  textElement.innerHTML = currentPhrase.substring(0, charIndex) + `<span class="typing-cursor">|</span>`;
-
-  if (!isDeleting && charIndex === currentPhrase.length) {
-    isDeleting = true;
-    typeSpeed = 2000;
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-    typeSpeed = 500;
-  }
-
-  setTimeout(type, typeSpeed);
-}
-
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
-);
-
-document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
-
-const navbar = document.querySelector(".navbar");
-window.addEventListener("scroll", () => {
-  navbar.classList.toggle("scrolled", window.scrollY > 50);
+/* ─────────────────────────────────────────────────────────────────
+   1. LENIS — smooth scroll engine
+   ───────────────────────────────────────────────────────────────── */
+const lenis = new Lenis({
+  duration:           1.2,
+  easing:             (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  orientation:        'vertical',
+  gestureOrientation: 'vertical',
+  smoothWheel:        true,
+  wheelMultiplier:    1,
+  touchMultiplier:    2,
+  infinite:           false,
 });
 
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-link");
+function startRafLoop(time) {
+  lenis.raf(time);
+  requestAnimationFrame(startRafLoop);
+}
+requestAnimationFrame(startRafLoop);
 
-function updateActiveNav() {
-  const scrollY = window.scrollY;
-  const offset = 120;
-  let current = "";
+/* ─────────────────────────────────────────────────────────────────
+   2. TYPEWRITER
+   ───────────────────────────────────────────────────────────────── */
+function createTypewriterState() {
+  return { phraseIndex: 0, charIndex: 0, isDeleting: false };
+}
 
+function getNextTypewriterSpeed(state) {
+  if (state.isDeleting)              return TYPEWRITER_DELETE_SPEED;
+  const phrase = TYPEWRITER_PHRASES[state.phraseIndex];
+  if (state.charIndex === phrase.length) return TYPEWRITER_PAUSE_AFTER;
+  if (state.charIndex === 0)         return TYPEWRITER_PAUSE_BEFORE;
+  return TYPEWRITER_TYPE_SPEED;
+}
+
+function advanceTypewriterState(state) {
+  const phrase = TYPEWRITER_PHRASES[state.phraseIndex];
+  const next   = { ...state };
+
+  if (state.isDeleting) {
+    next.charIndex--;
+    if (next.charIndex === 0) {
+      next.isDeleting  = false;
+      next.phraseIndex = (state.phraseIndex + 1) % TYPEWRITER_PHRASES.length;
+    }
+  } else {
+    next.charIndex++;
+    if (next.charIndex === phrase.length) {
+      next.isDeleting = true;
+    }
+  }
+
+  return next;
+}
+
+function renderTypewriterFrame(element, state) {
+  const phrase = TYPEWRITER_PHRASES[state.phraseIndex];
+  element.innerHTML =
+    phrase.substring(0, state.charIndex) +
+    '<span class="typing-cursor">|</span>';
+}
+
+function startTypewriter(elementId) {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+
+  let state = createTypewriterState();
+
+  function tick() {
+    renderTypewriterFrame(element, state);
+    const delay = getNextTypewriterSpeed(state);
+    state = advanceTypewriterState(state);
+    setTimeout(tick, delay);
+  }
+
+  tick();
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   3. SCROLL REVEAL
+   ───────────────────────────────────────────────────────────────── */
+function createRevealObserver() {
+  return new IntersectionObserver(
+    (entries) => entries.forEach(revealEntryIfVisible),
+    { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
+  );
+}
+
+function revealEntryIfVisible(entry) {
+  if (!entry.isIntersecting) return;
+  entry.target.classList.add('active');
+  revealObserver.unobserve(entry.target);
+}
+
+const revealObserver = createRevealObserver();
+document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+/* ─────────────────────────────────────────────────────────────────
+   4. NAVBAR — scroll state + active link highlight
+   ───────────────────────────────────────────────────────────────── */
+const navbar   = document.querySelector('.navbar');
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function markNavbarScrolled(scrollPosition) {
+  navbar.classList.toggle('scrolled', scrollPosition > NAVBAR_SCROLL_OFFSET);
+}
+
+function findActiveSection(scrollY) {
+  let activeId = '';
   sections.forEach((section) => {
-    const sectionTop = section.offsetTop - offset;
-    const sectionHeight = section.offsetHeight;
-    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-      current = section.getAttribute("id");
+    const top    = section.offsetTop - SECTION_ACTIVE_OFFSET;
+    const bottom = top + section.offsetHeight;
+    if (scrollY >= top && scrollY < bottom) {
+      activeId = section.getAttribute('id');
     }
   });
+  return activeId;
+}
 
+function highlightActiveNavLink(activeSectionId) {
   navLinks.forEach((link) => {
-    link.classList.remove("active");
-    const href = link.getAttribute("href");
-    if (href === "#" + current) {
-      link.classList.add("active");
+    const isActive = link.getAttribute('href') === '#' + activeSectionId;
+    link.classList.toggle('active', isActive);
+  });
+}
+
+lenis.on('scroll', ({ scroll }) => {
+  markNavbarScrolled(scroll);
+  highlightActiveNavLink(findActiveSection(scroll));
+});
+
+highlightActiveNavLink(findActiveSection(window.scrollY));
+
+/* ─────────────────────────────────────────────────────────────────
+   5. SCROLL-TO-TOP BUTTON
+   ───────────────────────────────────────────────────────────────── */
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+function updateScrollTopVisibility(scrollPosition) {
+  scrollTopBtn.classList.toggle('visible', scrollPosition > SCROLL_TOP_THRESHOLD);
+}
+
+lenis.on('scroll', ({ scroll }) => updateScrollTopVisibility(scroll));
+
+scrollTopBtn.addEventListener('click', () => {
+  lenis.scrollTo(0, { duration: 1.4 });
+});
+
+/* ─────────────────────────────────────────────────────────────────
+   6. NAV ANCHOR CLICKS — smooth scroll via Lenis
+   ───────────────────────────────────────────────────────────────── */
+const navbarCollapse = document.getElementById('navbarNav');
+
+function isHashLink(href) {
+  return href && href.startsWith('#');
+}
+
+function closeMobileMenuIfOpen() {
+  if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+    bootstrap.Collapse.getOrCreateInstance(navbarCollapse).hide();
+  }
+}
+
+function scrollToSection(href) {
+  const target = document.querySelector(href);
+  if (!target) return;
+  lenis.scrollTo(target, { offset: NAVBAR_HEIGHT_OFFSET, duration: 1.2 });
+}
+
+navLinks.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (!isHashLink(href)) return;
+
+    e.preventDefault();
+    scrollToSection(href);
+    closeMobileMenuIfOpen();
+  });
+});
+
+/* ─────────────────────────────────────────────────────────────────
+   7. PORTFOLIO FILTER
+   ───────────────────────────────────────────────────────────────── */
+const filterButtons  = document.querySelectorAll('.filter-btn');
+const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+function showPortfolioItem(item) {
+  item.style.display = 'block';
+  requestAnimationFrame(() => {
+    item.style.opacity   = '0';
+    item.style.transform = 'scale(0.9) translateY(20px)';
+    requestAnimationFrame(() => {
+      item.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      item.style.opacity    = '1';
+      item.style.transform  = 'scale(1) translateY(0)';
+    });
+  });
+}
+
+function hidePortfolioItem(item) {
+  item.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+  item.style.opacity    = '0';
+  item.style.transform  = 'scale(0.85) translateY(10px)';
+  setTimeout(() => { item.style.display = 'none'; }, 260);
+}
+
+function itemMatchesFilter(item, filter) {
+  return filter === 'all' || item.getAttribute('data-category') === filter;
+}
+
+function applyPortfolioFilter(activeFilter) {
+  portfolioItems.forEach((item) => {
+    if (itemMatchesFilter(item, activeFilter)) {
+      showPortfolioItem(item);
+    } else {
+      hidePortfolioItem(item);
     }
   });
+  setTimeout(reinitTiltOnVisibleCards, 300);
 }
 
-window.addEventListener("scroll", updateActiveNav);
-updateActiveNav();
+function reinitTiltOnVisibleCards() {
+  const isTouchDevice = !window.matchMedia('(hover: hover)').matches;
+  if (isTouchDevice || typeof VanillaTilt === 'undefined') return;
 
-const scrollTopBtn = document.getElementById("scrollTopBtn");
+  const visibleCards = document.querySelectorAll(
+    ".portfolio-item:not([style*='display: none']) .portfolio-card-v2"
+  );
+  VanillaTilt.init(visibleCards, {
+    max: 8, speed: 400, perspective: 800,
+    glare: true, 'max-glare': 0.15, scale: 1.04, gyroscope: false,
+  });
+}
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 400) {
-    scrollTopBtn.classList.add("visible");
-  } else {
-    scrollTopBtn.classList.remove("visible");
-  }
-});
-
-scrollTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-const filterBtns = document.querySelectorAll(".filter-btn");
-const portfolioItems = document.querySelectorAll(".portfolio-item");
-
-filterBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    filterBtns.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    const filter = btn.getAttribute("data-filter");
-
-    portfolioItems.forEach((item) => {
-      const category = item.getAttribute("data-category");
-      const match = filter === "all" || category === filter;
-
-      if (match) {
-        item.style.display = "block";
-        requestAnimationFrame(() => {
-          item.style.opacity = "0";
-          item.style.transform = "scale(0.9) translateY(20px)";
-          requestAnimationFrame(() => {
-            item.style.transition = "opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
-            item.style.opacity = "1";
-            item.style.transform = "scale(1) translateY(0)";
-          });
-        });
-      } else {
-        item.style.transition = "opacity 0.25s ease, transform 0.25s ease";
-        item.style.opacity = "0";
-        item.style.transform = "scale(0.85) translateY(10px)";
-        setTimeout(() => {
-          item.style.display = "none";
-        }, 260);
-      }
-    });
-
-    setTimeout(() => {
-      if (typeof VanillaTilt !== "undefined" && window.matchMedia("(hover: hover)").matches) {
-        const visibleCards = document.querySelectorAll(".portfolio-item:not([style*='display: none']) .portfolio-card-v2");
-        VanillaTilt.init(visibleCards, {
-          max: 8, speed: 400, perspective: 800,
-          glare: true, "max-glare": 0.15, scale: 1.04, gyroscope: false,
-        });
-      }
-    }, 300);
+filterButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyPortfolioFilter(btn.getAttribute('data-filter'));
   });
 });
 
-function easeOutCubic(t) {
-  return 1 - Math.pow(1 - t, 3);
+/* ─────────────────────────────────────────────────────────────────
+   8. STATS COUNTER
+   ───────────────────────────────────────────────────────────────── */
+function easeOutCubic(progress) {
+  return 1 - Math.pow(1 - progress, 3);
 }
 
-function animateCounter(el) {
-  const target = parseInt(el.getAttribute("data-target"), 10);
-  const duration = 1800;
-  const start = performance.now();
+function animateNumberTo(element, targetValue) {
+  const startTime = performance.now();
 
-  function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const value = Math.round(easeOutCubic(progress) * target);
-    el.textContent = value;
-    if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = target;
+  function updateFrame(currentTime) {
+    const elapsed  = currentTime - startTime;
+    const progress = Math.min(elapsed / COUNTER_DURATION_MS, 1);
+    element.textContent = Math.round(easeOutCubic(progress) * targetValue);
+    if (progress < 1) {
+      requestAnimationFrame(updateFrame);
+    } else {
+      element.textContent = targetValue;
+    }
   }
-  requestAnimationFrame(update);
+
+  requestAnimationFrame(updateFrame);
+}
+
+function animateAllCountersInElement(element) {
+  element.querySelectorAll('.stat-number').forEach((counter) => {
+    const targetValue = parseInt(counter.getAttribute('data-target'), 10);
+    animateNumberTo(counter, targetValue);
+  });
+}
+
+function waitForRevealThenAnimate(revealParent, element) {
+  function checkAndAnimate() {
+    if (revealParent.classList.contains('active')) {
+      animateAllCountersInElement(element);
+    } else {
+      requestAnimationFrame(checkAndAnimate);
+    }
+  }
+  checkAndAnimate();
 }
 
 const statsObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const revealParent = entry.target.closest(".reveal");
-        if (revealParent && !revealParent.classList.contains("active")) {
-          const checkReveal = () => {
-            if (revealParent.classList.contains("active")) {
-              entry.target.querySelectorAll(".stat-number").forEach(animateCounter);
-              statsObserver.unobserve(entry.target);
-            } else {
-              requestAnimationFrame(checkReveal);
-            }
-          };
-          checkReveal();
-        } else {
-          entry.target.querySelectorAll(".stat-number").forEach(animateCounter);
-          statsObserver.unobserve(entry.target);
-        }
+      if (!entry.isIntersecting) return;
+
+      const revealParent = entry.target.closest('.reveal');
+      const isRevealed   = !revealParent || revealParent.classList.contains('active');
+
+      if (isRevealed) {
+        animateAllCountersInElement(entry.target);
+      } else {
+        waitForRevealThenAnimate(revealParent, entry.target);
       }
+
+      statsObserver.unobserve(entry.target);
     });
   },
-  { threshold: 0.4 }
+  { threshold: COUNTER_INTERSECTION }
 );
 
-const statsStrip = document.querySelector(".stats-strip");
+const statsStrip = document.querySelector('.stats-strip');
 if (statsStrip) statsObserver.observe(statsStrip);
 
-let formSubmitting = false;
-
-function handleForm(e) {
-  e.preventDefault();
-  if (formSubmitting) return false;
-
-  const btn = e.target.querySelector("button");
-  const submitText = btn.querySelector(".btn-submit-text");
-  const loadingText = btn.querySelector(".btn-submit-loading");
-
-  formSubmitting = true;
-  submitText.style.display = "none";
-  loadingText.style.display = "inline";
-  btn.disabled = true;
-
-  const name = document.getElementById("cf-name").value;
-  const email = document.getElementById("cf-email").value;
-  const subject = document.getElementById("cf-subject").value;
-  const message = document.getElementById("cf-message").value;
-
-  const waNumber = "6289616682955";
-  const waText = `Halo Kevin, saya ${encodeURIComponent(name)} (${encodeURIComponent(email)}).\n\nSubjek: ${encodeURIComponent(subject)}\n\n${encodeURIComponent(message)}`;
-  const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
-
-  window.open(waUrl, "_blank");
-  e.target.reset();
-  submitText.style.display = "inline";
-  loadingText.style.display = "none";
-  btn.disabled = false;
-  formSubmitting = false;
-
-  return false;
+/* ─────────────────────────────────────────────────────────────────
+   9. CONTACT FORM — builds WhatsApp deep-link from form values
+   ───────────────────────────────────────────────────────────────── */
+function readContactFormValues() {
+  return {
+    name:    document.getElementById('cf-name').value,
+    email:   document.getElementById('cf-email').value,
+    subject: document.getElementById('cf-subject').value,
+    message: document.getElementById('cf-message').value,
+  };
 }
 
-const navbarCollapse = document.getElementById("navbarNav");
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    if (navbarCollapse && navbarCollapse.classList.contains("show")) {
-      const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
-      bsCollapse.hide();
-    }
-  });
-});
+function buildWhatsAppUrl({ name, email, subject, message }) {
+  const text =
+    `Halo Kevin, saya ${encodeURIComponent(name)} (${encodeURIComponent(email)}).` +
+    `\n\nSubjek: ${encodeURIComponent(subject)}` +
+    `\n\n${encodeURIComponent(message)}`;
 
-document.addEventListener("DOMContentLoaded", () => {
-  type();
-  initTheme();
-});
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+}
 
-const STORAGE_KEY = "kevin-porto-theme";
+function setSubmitButtonLoading(btn, isLoading) {
+  btn.querySelector('.btn-submit-text').style.display  = isLoading ? 'none'   : 'inline';
+  btn.querySelector('.btn-submit-loading').style.display = isLoading ? 'inline' : 'none';
+  btn.disabled = isLoading;
+}
+
+function handleContactFormSubmit(e) {
+  e.preventDefault();
+
+  const btn    = e.target.querySelector('button[type="submit"]');
+  const values = readContactFormValues();
+
+  setSubmitButtonLoading(btn, true);
+  window.open(buildWhatsAppUrl(values), '_blank');
+  e.target.reset();
+  setSubmitButtonLoading(btn, false);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   10. THEME — dark / light toggle with localStorage persistence
+   ───────────────────────────────────────────────────────────────── */
+function getStoredTheme() {
+  try { return localStorage.getItem(THEME_STORAGE_KEY); } catch { return null; }
+}
+
+function saveTheme(theme) {
+  try { localStorage.setItem(THEME_STORAGE_KEY, theme); } catch {}
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.documentElement.setAttribute('data-bs-theme', theme);
+}
+
+function resolveInitialTheme() {
+  const stored      = getStoredTheme();
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return stored || (prefersDark ? 'dark' : 'light');
+}
 
 function initTheme() {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = stored || (prefersDark ? "dark" : "light");
-    document.documentElement.setAttribute("data-theme", theme);
-    document.documentElement.setAttribute("data-bs-theme", theme);
-  } catch (e) {}
+  applyTheme(resolveInitialTheme());
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute("data-theme");
-  const next = current === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", next);
-  document.documentElement.setAttribute("data-bs-theme", next);
-  localStorage.setItem(STORAGE_KEY, next);
+  const current = document.documentElement.getAttribute('data-theme');
+  const next    = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  saveTheme(next);
 }
 
-document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
-const tiltConfigs = [
-  { selector: ".portfolio-card-v2", max: 8, speed: 400, perspective: 800, glare: true, maxGlare: 0.15, scale: 1.04 },
-  { selector: ".card-custom", max: 5, speed: 500, perspective: 1000, glare: true, maxGlare: 0.08, scale: 1.02 },
-  { selector: ".org-card-v2", max: 6, speed: 400, perspective: 900, glare: true, maxGlare: 0.1, scale: 1.025 },
-  { selector: ".cert-card-masonry", max: 5, speed: 600, perspective: 1000, glare: true, maxGlare: 0.07, scale: 1.015 },
-  { selector: ".workflow-card", max: 6, speed: 400, perspective: 900, glare: true, maxGlare: 0.1, scale: 1.03 },
-];
+/* ─────────────────────────────────────────────────────────────────
+   11. VANILLA TILT — 3-D hover effect on cards
+   ───────────────────────────────────────────────────────────────── */
+function isTiltSupported() {
+  return typeof VanillaTilt !== 'undefined' &&
+         window.matchMedia('(hover: hover)').matches;
+}
 
-function initTilt() {
-  const hasHover = window.matchMedia("(hover: hover)").matches;
-  const tiltExists = typeof VanillaTilt !== "undefined";
-  if (!hasHover || !tiltExists) return;
-
-  tiltConfigs.forEach((config) => {
-    VanillaTilt.init(document.querySelectorAll(config.selector), {
-      max: config.max,
-      speed: config.speed,
-      perspective: config.perspective,
-      glare: config.glare,
-      "max-glare": config.maxGlare,
-      scale: config.scale,
-      gyroscope: false,
-    });
+function applyTiltConfig({ selector, max, speed, perspective, glare, maxGlare, scale }) {
+  VanillaTilt.init(document.querySelectorAll(selector), {
+    max, speed, perspective, glare,
+    'max-glare': maxGlare,
+    scale,
+    gyroscope: false,
   });
 }
 
-window.addEventListener("load", initTilt);
+function initAllTiltEffects() {
+  if (!isTiltSupported()) return;
+  TILT_CONFIGS.forEach(applyTiltConfig);
+}
 
-(function initPhotoReveal() {
-  const container = document.getElementById("photoReveal");
-  if (!container) return;
+window.addEventListener('load', initAllTiltEffects);
 
-  const photoBot = document.getElementById("photoBot");
-  if (!photoBot) return;
+/* ─────────────────────────────────────────────────────────────────
+   12. PHOTO REVEAL — cyborg layer revealed on cursor position
+   ───────────────────────────────────────────────────────────────── */
+function buildRevealMask(x, y, radius) {
+  const featherStart = Math.max(0, radius - PHOTO_SOFT_EDGE);
+  return `radial-gradient(circle ${Math.round(radius)}px at ${Math.round(x)}px ${Math.round(y)}px, ` +
+         `black ${Math.round(featherStart)}px, transparent ${Math.round(radius)}px)`;
+}
 
-  const REVEAL_RADIUS = 100;
-  const SOFT_EDGE = 15;
-  const EASE = 0.15;
+function applyRevealMask(element, x, y, radius) {
+  const mask = radius < 0.5
+    ? 'radial-gradient(circle 0px, transparent, transparent)'
+    : buildRevealMask(x, y, radius);
 
-  let currentR = 0;
-  let targetR = 0;
-  let curX = 0;
-  let curY = 0;
-  let animRaf = null;
-  let isInside = false;
+  element.style.webkitMaskImage = mask;
+  element.style.maskImage       = mask;
+}
 
-  function applyMask(x, y, r) {
-    if (r < 0.5) {
-      photoBot.style.webkitMaskImage = "radial-gradient(circle 0px, transparent, transparent)";
-      photoBot.style.maskImage = "radial-gradient(circle 0px, transparent, transparent)";
-      return;
-    }
-    const softStart = Math.max(0, r - SOFT_EDGE);
-    const gradient = `radial-gradient(circle ${Math.round(r)}px at ${Math.round(x)}px ${Math.round(y)}px, black ${Math.round(softStart)}px, transparent ${Math.round(r)}px)`;
-    photoBot.style.webkitMaskImage = gradient;
-    photoBot.style.maskImage = gradient;
-  }
+function initPhotoReveal(containerId, botLayerId) {
+  const container = document.getElementById(containerId);
+  const botLayer  = document.getElementById(botLayerId);
+  if (!container || !botLayer) return;
 
-  function animate() {
-    currentR += (targetR - currentR) * EASE;
-    if (Math.abs(targetR - currentR) < 0.2) {
-      currentR = targetR;
-    }
+  let currentRadius = 0;
+  let targetRadius  = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  let rafId   = null;
+  let isHovering = false;
 
-    applyMask(curX, curY, currentR);
+  function animateReveal() {
+    currentRadius += (targetRadius - currentRadius) * PHOTO_EASE_FACTOR;
+    if (Math.abs(targetRadius - currentRadius) < 0.2) currentRadius = targetRadius;
 
-    if (Math.abs(targetR - currentR) > 0.1) {
-      animRaf = requestAnimationFrame(animate);
+    applyRevealMask(botLayer, cursorX, cursorY, currentRadius);
+
+    if (Math.abs(targetRadius - currentRadius) > 0.1) {
+      rafId = requestAnimationFrame(animateReveal);
     } else {
-      animRaf = null;
-      if (currentR < 0.5) {
-        photoBot.style.webkitMaskImage = "radial-gradient(circle 0px, transparent, transparent)";
-        photoBot.style.maskImage = "radial-gradient(circle 0px, transparent, transparent)";
-      }
+      rafId = null;
     }
   }
 
-  function startAnimate() {
-    if (!animRaf) animRaf = requestAnimationFrame(animate);
+  function startAnimation() {
+    if (!rafId) rafId = requestAnimationFrame(animateReveal);
   }
 
-  container.addEventListener("mouseenter", (e) => {
-    isInside = true;
-    targetR = REVEAL_RADIUS;
+  function setCursorFromMouseEvent(e) {
     const rect = container.getBoundingClientRect();
-    curX = e.clientX - rect.left;
-    curY = e.clientY - rect.top;
-    startAnimate();
+    cursorX = e.clientX - rect.left;
+    cursorY = e.clientY - rect.top;
+  }
+
+  function setCursorFromTouchEvent(e) {
+    const rect  = container.getBoundingClientRect();
+    const touch = e.touches[0];
+    cursorX = touch.clientX - rect.left;
+    cursorY = touch.clientY - rect.top;
+  }
+
+  container.addEventListener('mouseenter', (e) => {
+    isHovering   = true;
+    targetRadius = PHOTO_REVEAL_RADIUS;
+    setCursorFromMouseEvent(e);
+    startAnimation();
   });
 
-  container.addEventListener("mouseleave", () => {
-    isInside = false;
-    targetR = 0;
-    startAnimate();
+  container.addEventListener('mouseleave', () => {
+    isHovering   = false;
+    targetRadius = 0;
+    startAnimation();
   });
 
-  container.addEventListener("mousemove", (e) => {
-    const rect = container.getBoundingClientRect();
-    curX = e.clientX - rect.left;
-    curY = e.clientY - rect.top;
-    if (isInside && currentR > 0) {
-      applyMask(curX, curY, currentR);
+  container.addEventListener('mousemove', (e) => {
+    setCursorFromMouseEvent(e);
+    if (isHovering && currentRadius > 0) {
+      applyRevealMask(botLayer, cursorX, cursorY, currentRadius);
     }
   });
 
-  container.addEventListener("touchstart", (e) => {
-    isInside = true;
-    targetR = REVEAL_RADIUS;
-    const rect = container.getBoundingClientRect();
-    const touch = e.touches[0];
-    curX = touch.clientX - rect.left;
-    curY = touch.clientY - rect.top;
-    startAnimate();
+  container.addEventListener('touchstart', (e) => {
+    isHovering   = true;
+    targetRadius = PHOTO_REVEAL_RADIUS;
+    setCursorFromTouchEvent(e);
+    startAnimation();
   }, { passive: true });
 
-  container.addEventListener("touchmove", (e) => {
-    const rect = container.getBoundingClientRect();
-    const touch = e.touches[0];
-    curX = touch.clientX - rect.left;
-    curY = touch.clientY - rect.top;
-    if (isInside && currentR > 0) {
-      applyMask(curX, curY, currentR);
+  container.addEventListener('touchmove', (e) => {
+    setCursorFromTouchEvent(e);
+    if (isHovering && currentRadius > 0) {
+      applyRevealMask(botLayer, cursorX, cursorY, currentRadius);
     }
   }, { passive: true });
 
-  container.addEventListener("touchend", () => {
-    isInside = false;
-    targetR = 0;
-    startAnimate();
+  container.addEventListener('touchend', () => {
+    isHovering   = false;
+    targetRadius = 0;
+    startAnimation();
   });
-})();
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   BOOT — orchestrate startup in dependency order
+   ───────────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  startTypewriter('typewriter');
+  initPhotoReveal('photoReveal', 'photoBot');
+
+  // Attach contact form handler if form exists
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', handleContactFormSubmit);
+  }
+});

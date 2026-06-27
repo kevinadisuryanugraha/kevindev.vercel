@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
   <head>
     <script>
@@ -86,6 +86,9 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Lenis Smooth Scroll CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.25/dist/lenis.css" />
 
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -2278,7 +2281,6 @@
 
               <form
                 id="contactForm"
-                onsubmit="return handleForm(event)"
                 class="contact-form"
                 autocomplete="off"
               >
@@ -2363,14 +2365,82 @@
     </button>
 
     <!-- Footer -->
-    <footer>
+    <footer class="site-footer">
       <div class="container">
-        <p class="mb-0">
-          &copy; 2026 Kevin Adisurya Nugraha. All Rights Reserved.
-        </p>
-        <small>Dibuat dengan HTML, CSS, Bootstrap 5 & Vanilla JS</small>
+        <div class="footer-grid">
+
+          <!-- Brand column -->
+          <div class="footer-brand-col">
+            <a href="#" class="footer-logo">Kevin<span>.Dev</span></a>
+            <p class="footer-tagline">
+              AI-Assisted Full-Stack Developer & Founder HANSCO Digital.
+              Membangun produk digital yang bersih, cepat, dan user-friendly.
+            </p>
+            <div class="footer-socials">
+              <a href="https://www.linkedin.com/in/kevin-adisurya-nugraha/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/kevinadisuryanugraha" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.instagram.com/kvn.ads/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="mailto:habeelkevin@gmail.com" class="footer-social-btn" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Nav column -->
+          <div class="footer-nav-col">
+            <h6 class="footer-col-heading">Navigasi</h6>
+            <ul class="footer-nav-list">
+              <li><a href="#home">Beranda</a></li>
+              <li><a href="#about">Tentang</a></li>
+              <li><a href="#skills">Keahlian</a></li>
+              <li><a href="#portfolio">Portofolio</a></li>
+              <li><a href="#experience">Pengalaman</a></li>
+              <li><a href="#certificates">Sertifikat</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact column -->
+          <div class="footer-nav-col">
+            <h6 class="footer-col-heading">Kontak</h6>
+            <ul class="footer-nav-list">
+              <li>
+                <a href="mailto:habeelkevin@gmail.com">
+                  <i class="fas fa-envelope me-2"></i>habeelkevin@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/6289616682955" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-whatsapp me-2"></i>+62 896 1668 2955
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kevinadisuryanugraha" target="_blank" rel="noopener noreferrer">
+                  <i class="fab fa-github me-2"></i>kevinadisuryanugraha
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+          <p>&copy; 2026 Kevin Adisurya Nugraha. All Rights Reserved.</p>
+          <p class="footer-bottom-made">
+            Dibuat dengan <i class="fas fa-heart footer-heart"></i> HTML, CSS &amp; Vanilla JS
+          </p>
+        </div>
       </div>
     </footer>
+
+    <!-- Lenis Smooth Scroll JS -->
+    <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
 
     <!-- Vanilla Tilt.js - 3D Tilt Effect -->
     <script
