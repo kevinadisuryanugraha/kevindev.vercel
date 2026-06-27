@@ -340,7 +340,10 @@ body {
   50% { opacity: 0; }
 }
 
-/* --- Hero Image: Photo Reveal System --- */
+/* ==============================================
+   HERO IMAGE — PHOTO REVEAL (Cursor Spotlight)
+   ============================================== */
+
 .hero-visual {
   position: relative;
   z-index: 1;
@@ -348,48 +351,7 @@ body {
   justify-content: center;
 }
 
-.photo-reveal-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 30px;
-  overflow: hidden;
-  cursor: none; /* hide system cursor inside container */
-}
-
-.photo-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 22px;
-  border: none;
-  box-shadow: none;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Bottom layer — AI Robot always visible */
-.photo-bot {
-  z-index: 1;
-}
-
-/* Top layer — real Kevin, always fully visible by default.
-   Mask is applied dynamically via JavaScript on mousemove. */
-.photo-top {
-  z-index: 2;
-  /* NO static mask-image here — JS handles it */
-}
-
-/* Override old rule so photo-layer doesn't get old box-shadow */
-.photo-reveal-container .hero-main-img {
-  border: none;
-  box-shadow: none;
-}
-
-/* Outer wrapper still carries the shadow */
+/* Outer card: carries border + shadow */
 .hero-img-wrapper {
   position: relative;
   width: 400px;
@@ -400,7 +362,34 @@ body {
   overflow: hidden;
 }
 
-/* Fallback for old .hero-main-img usage (about section) */
+/* Stacking container for the two photos */
+.photo-reveal-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  user-select: none;
+}
+
+/* Both layers fill the container */
+.photo-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  pointer-events: none;
+  draggable: false;
+}
+
+/* Photo 2 (AI robot) — always visible underneath */
+.photo-bot { z-index: 1; }
+
+/* Photo 1 (real Kevin) — on top, JS applies mask-image on hover */
+.photo-top { z-index: 2; }
+
+/* Fallback .hero-main-img for About section photo */
 .hero-main-img {
   width: 100%;
   height: 100%;
@@ -410,96 +399,47 @@ body {
   z-index: 2;
 }
 
-/* Cursor glowing orb */
-.cursor-orb {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 2px solid rgba(37, 99, 235, 0.7);
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.5), inset 0 0 20px rgba(37, 99, 235, 0.1);
-  pointer-events: none;
-  z-index: 10;
-  /* Center the orb on the cursor */
-  transform: translate(-50%, -50%);
-  /* Initial position off-screen — JS will set left/top */
-  left: -300px;
-  top: -300px;
-  transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease;
-  opacity: 0; /* JS sets opacity: 1 on mouseenter */
-  mix-blend-mode: normal;
-}
-
-/* AI label inside orb */
-.cursor-orb::after {
-  content: 'AI';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: rgba(37, 99, 235, 0.9);
-  letter-spacing: 1px;
-  font-family: "Poppins", sans-serif;
-}
-
-/* Reveal hint badge */
+/* "Hover me!" hint badge */
 .reveal-hint {
   position: absolute;
-  bottom: 16px;
-  right: 16px;
-  z-index: 20;
-  background: rgba(37, 99, 235, 0.9);
-  color: white;
+  bottom: 14px;
+  right: 14px;
+  z-index: 30;
+  background: rgba(37, 99, 235, 0.88);
+  color: #fff;
   font-size: 0.72rem;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 5px 13px;
   border-radius: 20px;
   letter-spacing: 0.5px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   font-family: "Poppins", sans-serif;
-  transition: opacity 0.4s ease, transform 0.4s ease;
   pointer-events: none;
+  transition: opacity 0.35s ease;
   animation: hint-bounce 2s ease-in-out infinite;
 }
 
 @keyframes hint-bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  50%       { transform: translateY(-5px); }
 }
 
-/* Hide hint when hovering */
+/* Fade hint out while hovering */
 .photo-reveal-container:hover .reveal-hint {
   opacity: 0;
-  transform: translateY(10px);
   animation: none;
 }
 
-/* Touch device fallback: animate the reveal automatically */
+/* Touch devices: show a static peek of the robot */
 @media (hover: none) {
   .photo-top {
-    -webkit-mask-image: radial-gradient(
-      circle 120px at 50% 35%,
-      transparent 90px,
-      black 120px
-    );
-    mask-image: radial-gradient(
-      circle 120px at 50% 35%,
-      transparent 90px,
-      black 120px
-    );
-    transition: none;
+    -webkit-mask-image: radial-gradient(circle 100px at 50% 38%, transparent 72px, black 100px);
+    mask-image:         radial-gradient(circle 100px at 50% 38%, transparent 72px, black 100px);
   }
-
-  .cursor-orb { display: none; }
-
-  .reveal-hint {
-    animation: hint-bounce 2s ease-in-out infinite;
-  }
+  .reveal-hint { display: none; }
 }
 
-/* Responsive: shrink wrapper on small screens */
+/* Responsive */
 @media (max-width: 768px) {
   .hero-img-wrapper {
     width: 280px;

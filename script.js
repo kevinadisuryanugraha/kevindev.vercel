@@ -342,57 +342,51 @@ function initTilt() {
 window.addEventListener("load", initTilt);
 
 // =====================================================
-// PHOTO REVEAL EFFECT — Cursor Spotlight (Fixed)
+// PHOTO REVEAL EFFECT — Cursor Spotlight
 // =====================================================
 (function initPhotoReveal() {
   const container = document.getElementById("photoReveal");
   if (!container) return;
 
   const photoTop = document.getElementById("photoTop");
-  const orb     = document.getElementById("cursorOrb");
+  if (!photoTop) return;
 
-  const REVEAL_RADIUS = 110; // max radius of the "hole" in px
-  const EASE          = 0.15; // easing factor (lower = smoother)
-  const SOFT_EDGE     = 18;   // feather/softness of hole edge
+  const REVEAL_RADIUS = 100; // Spotlight hole radius in px
+  const SOFT_EDGE     = 15;  // Edge softness transition in px
+  const EASE          = 0.15; // Smooth transition speed
 
-  let currentR = 0;   // animated current radius
-  let targetR  = 0;   // desired radius
-  let curX = 0, curY = 0; // current cursor position within container
+  let currentR = 0;   // Animated radius
+  let targetR  = 0;   // Target radius
+  let curX = 0, curY = 0; // Cursor position relative to container
   let animRaf = null;
   let isInside = false;
 
   // Apply CSS mask-image directly to the top photo element
   function applyMask(x, y, r) {
     if (r < 0.5) {
-      // Radius essentially 0 → show Kevin fully (no mask)
       photoTop.style.webkitMaskImage = "none";
       photoTop.style.maskImage       = "none";
       return;
     }
-    const soft = Math.max(0, r - SOFT_EDGE);
-    // "hole" = transparent at cursor, Kevin visible everywhere else
-    const gradient = `radial-gradient(circle ${Math.round(r)}px at ${Math.round(x)}px ${Math.round(y)}px, transparent ${Math.round(soft)}px, black ${Math.round(r)}px)`;
+    const softStart = Math.max(0, r - SOFT_EDGE);
+    const gradient = `radial-gradient(circle ${Math.round(r)}px at ${Math.round(x)}px ${Math.round(y)}px, transparent ${Math.round(softStart)}px, black ${Math.round(r)}px)`;
     photoTop.style.webkitMaskImage = gradient;
     photoTop.style.maskImage       = gradient;
   }
 
-  // Animation loop — smoothly tweens currentR towards targetR
+  // Smooth animation loop
   function animate() {
     currentR += (targetR - currentR) * EASE;
-    if (Math.abs(targetR - currentR) < 0.4) currentR = targetR;
+    if (Math.abs(targetR - currentR) < 0.2) {
+      currentR = targetR;
+    }
 
     applyMask(curX, curY, currentR);
 
-    // Scale orb ring to match reveal radius
-    const orbD = Math.max(0, currentR * 1.9);
-    orb.style.width  = orbD + "px";
-    orb.style.height = orbD + "px";
-
-    if (Math.abs(targetR - currentR) > 0.3) {
+    if (Math.abs(targetR - currentR) > 0.1) {
       animRaf = requestAnimationFrame(animate);
     } else {
       animRaf = null;
-      // If fully closed, restore no-mask state
       if (currentR < 0.5) {
         photoTop.style.webkitMaskImage = "none";
         photoTop.style.maskImage       = "none";
@@ -404,35 +398,58 @@ window.addEventListener("load", initTilt);
     if (!animRaf) animRaf = requestAnimationFrame(animate);
   }
 
-  // Mouse enters photo container → open hole
-  container.addEventListener("mouseenter", () => {
+  container.addEventListener("mouseenter", (e) => {
     isInside = true;
     targetR = REVEAL_RADIUS;
-    orb.style.opacity = "1";
+    
+    // Set initial position immediately on enter to prevent flicker
+    const rect = container.getBoundingClientRect();
+    curX = e.clientX - rect.left;
+    curY = e.clientY - rect.top;
+    
     startAnimate();
   });
 
-  // Mouse leaves → close hole
   container.addEventListener("mouseleave", () => {
     isInside = false;
     targetR = 0;
-    orb.style.opacity = "0";
     startAnimate();
   });
 
-  // Mouse moves → track position (instant, no easing needed)
   container.addEventListener("mousemove", (e) => {
     const rect = container.getBoundingClientRect();
     curX = e.clientX - rect.left;
     curY = e.clientY - rect.top;
 
-    // Position orb ring directly at cursor (centered)
-    orb.style.left = curX + "px";
-    orb.style.top  = curY + "px";
-
-    // Also update mask position live (no easing on position, only on radius)
     if (isInside && currentR > 0) {
       applyMask(curX, curY, currentR);
     }
+  });
+
+  // Touch support for mobile devices
+  container.addEventListener("touchstart", (e) => {
+    isInside = true;
+    targetR = REVEAL_RADIUS;
+    const rect = container.getBoundingClientRect();
+    const touch = e.touches[0];
+    curX = touch.clientX - rect.left;
+    curY = touch.clientY - rect.top;
+    startAnimate();
+  }, { passive: true });
+
+  container.addEventListener("touchmove", (e) => {
+    const rect = container.getBoundingClientRect();
+    const touch = e.touches[0];
+    curX = touch.clientX - rect.left;
+    curY = touch.clientY - rect.top;
+    if (isInside && currentR > 0) {
+      applyMask(curX, curY, currentR);
+    }
+  }, { passive: true });
+
+  container.addEventListener("touchend", () => {
+    isInside = false;
+    targetR = 0;
+    startAnimate();
   });
 })();
