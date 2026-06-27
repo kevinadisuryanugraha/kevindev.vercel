@@ -348,8 +348,8 @@ window.addEventListener("load", initTilt);
   const container = document.getElementById("photoReveal");
   if (!container) return;
 
-  const photoTop = document.getElementById("photoTop");
-  if (!photoTop) return;
+  const photoBot = document.getElementById("photoBot");
+  if (!photoBot) return;
 
   const REVEAL_RADIUS = 100; // Spotlight hole radius in px
   const SOFT_EDGE     = 15;  // Edge softness transition in px
@@ -364,14 +364,15 @@ window.addEventListener("load", initTilt);
   // Apply CSS mask-image directly to the top photo element
   function applyMask(x, y, r) {
     if (r < 0.5) {
-      photoTop.style.webkitMaskImage = "none";
-      photoTop.style.maskImage       = "none";
+      photoBot.style.webkitMaskImage = "radial-gradient(circle 0px, transparent, transparent)";
+      photoBot.style.maskImage       = "radial-gradient(circle 0px, transparent, transparent)";
       return;
     }
     const softStart = Math.max(0, r - SOFT_EDGE);
-    const gradient = `radial-gradient(circle ${Math.round(r)}px at ${Math.round(x)}px ${Math.round(y)}px, transparent ${Math.round(softStart)}px, black ${Math.round(r)}px)`;
-    photoTop.style.webkitMaskImage = gradient;
-    photoTop.style.maskImage       = gradient;
+    // spotlight mask: solid black inside the circle, transparent outside
+    const gradient = `radial-gradient(circle ${Math.round(r)}px at ${Math.round(x)}px ${Math.round(y)}px, black ${Math.round(softStart)}px, transparent ${Math.round(r)}px)`;
+    photoBot.style.webkitMaskImage = gradient;
+    photoBot.style.maskImage       = gradient;
   }
 
   // Smooth animation loop
@@ -388,11 +389,12 @@ window.addEventListener("load", initTilt);
     } else {
       animRaf = null;
       if (currentR < 0.5) {
-        photoTop.style.webkitMaskImage = "none";
-        photoTop.style.maskImage       = "none";
+        photoBot.style.webkitMaskImage = "radial-gradient(circle 0px, transparent, transparent)";
+        photoBot.style.maskImage       = "radial-gradient(circle 0px, transparent, transparent)";
       }
     }
   }
+
 
   function startAnimate() {
     if (!animRaf) animRaf = requestAnimationFrame(animate);

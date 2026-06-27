@@ -406,15 +406,19 @@ body {
   pointer-events: none;
 }
 
-/* Photo 2 (AI robot) — always visible underneath */
+/* Photo 2 (AI robot) — reveal layer on top, JS masks it on hover */
 .photo-bot {
+  z-index: 2;
+  -webkit-mask-image: radial-gradient(circle 0px, transparent, transparent);
+  mask-image:         radial-gradient(circle 0px, transparent, transparent);
+}
+
+
+/* Photo 1 (real Kevin) — base layer underneath, fully visible */
+.photo-top {
   z-index: 1;
 }
 
-/* Photo 1 (real Kevin) — on top, JS applies mask-image on hover */
-.photo-top {
-  z-index: 2;
-}
 
 
 /* "Hover me!" hint badge */
@@ -455,18 +459,19 @@ body {
 
 /* Touch devices: show a static peek */
 @media (hover: none) {
-  .photo-top {
+  .photo-bot {
     -webkit-mask-image: radial-gradient(
       circle 120px at 50% 38%,
-      transparent 85px,
-      black 120px
+      black 85px,
+      transparent 120px
     );
     mask-image: radial-gradient(
       circle 120px at 50% 38%,
-      transparent 85px,
-      black 120px
+      black 85px,
+      transparent 120px
     );
   }
+
   .reveal-hint {
     display: none;
   }
