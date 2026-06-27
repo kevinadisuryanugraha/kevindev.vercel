@@ -262,113 +262,166 @@ body {
   display: block;
 }
 
-/* --- HERO SECTION (REDESIGNED) --- */
+/* --- HERO SECTION (REDESIGNED CYBERPUNK) --- */
 #home {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-color: var(--hero-bg);
-  /* Pola titik halus untuk background pro */
-  background-image: radial-gradient(var(--hero-dot-color) 1.5px, transparent 1.5px);
-  background-size: 32px 32px;
+  /* Glowing orange-red center on the portrait, fading into deep dark cyberpunk space on the left */
+  background: radial-gradient(circle at 75% 42%, #eb4f1e 0%, #aa2315 28%, #0f0714 68%);
   padding-top: 100px;
   position: relative;
   overflow: hidden;
 }
 
-/* Efek Glow di belakang */
-.hero-glow-bg {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(
-    circle,
-    rgba(var(--primary-rgb), 0.08) 0%,
-    transparent 70%
-  );
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.hero-subtitle-badge {
+.cyber-tagline {
   display: inline-block;
-  padding: 8px 16px;
-  background: rgba(var(--primary-rgb), 0.1);
-  color: var(--primary-color);
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  border: 1px solid rgba(var(--primary-rgb), 0.2);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fda4af; /* light pink/rose */
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  font-family: "Poppins", sans-serif;
 }
 
-.hero-title {
-  font-size: 3.5rem;
+.cyber-title {
+  font-size: 3.8rem;
   font-weight: 800;
-  line-height: 1.2;
-  color: var(--secondary-color);
+  line-height: 1.15;
+  color: #ffffff;
+  margin-bottom: 22px;
+  letter-spacing: -1.5px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Teks Gradasi */
-.text-gradient {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #0ea5e9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.cyber-desc {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 35px;
+  max-width: 500px;
+  font-family: "Poppins", sans-serif;
 }
 
-.hero-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--text-secondary);
-  margin-bottom: 2.5rem;
-  max-width: 90%;
+/* Cyber Button Styles */
+.btn-cyber-primary {
+  display: inline-block;
+  padding: 13px 30px;
+  background-color: #ffffff;
+  color: #111111;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Blinking Cursor for Typewriter */
-.typing-cursor {
-  color: var(--primary-color);
-  font-weight: 400;
-  animation: blink 1s step-end infinite;
+.btn-cyber-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.35);
+  color: #111111;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+.btn-cyber-secondary {
+  display: inline-block;
+  padding: 13px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.25s ease;
 }
 
-/* ==============================================
-   HERO IMAGE — PHOTO REVEAL (Cursor Spotlight)
-   ============================================== */
+.btn-cyber-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  color: #ffffff;
+}
 
-.hero-visual {
+/* HUD System Overlays */
+.hud-container {
   position: relative;
-  z-index: 1;
+  width: 420px;
+  height: 520px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-/* Outer card: carries border + shadow */
-.hero-img-wrapper {
-  position: relative;
-  width: 400px;
-  height: 480px;
-  border-radius: 30px;
-  border: 8px solid var(--card-bg);
-  box-shadow: 20px 20px 50px var(--shadow-xl), -10px -10px 30px var(--shadow-sm);
-  overflow: hidden;
+.hud-circle {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+  top: 38%;
+  left: 50%;
+}
+
+.circle-1 {
+  width: 290px;
+  height: 290px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.2);
+  animation: spin 60s linear infinite;
+}
+
+.circle-2 {
+  width: 440px;
+  height: 440px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.circle-3 {
+  width: 580px;
+  height: 580px;
+  border: 1px dotted rgba(255, 255, 255, 0.12);
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* HUD Labels */
+.hud-label {
+  position: absolute;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 2px;
+  white-space: nowrap;
+  font-family: monospace;
+}
+
+.label-1 {
+  top: 15%;
+  right: 10%;
+}
+
+.label-2 {
+  top: 50%;
+  right: -25px;
+}
+
+.label-3 {
+  bottom: 8%;
+  left: -15px;
 }
 
 /* Stacking container for the two photos */
 .photo-reveal-container {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 320px;
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
   cursor: crosshair;
   user-select: none;
+  z-index: 10;
 }
 
 /* Both layers fill the container */

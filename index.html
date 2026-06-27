@@ -144,151 +144,61 @@
       </div>
     </nav>
 
-    <!-- HERO SECTION (REDESIGNED) -->
+    <!-- HERO SECTION (CYBERPUNK REDESIGN) -->
     <section id="home">
-      <!-- Glow Effect Background -->
-      <div class="hero-glow-bg"></div>
-
       <div class="container position-relative z-1">
         <div class="row align-items-center flex-column-reverse flex-lg-row">
           <!-- Text Column -->
-          <div class="col-lg-7 mt-5 mt-lg-0 text-center text-lg-start">
-            <div class="hero-subtitle-badge">
-              <i class="fas fa-robot me-2"></i>AI-Assisted Full-Stack Developer
-            </div>
-            <h1 class="hero-title mb-3">
-              Halo, Saya <br />
-              <span class="text-gradient">Kevin Adisurya</span>
+          <div class="col-lg-6 mt-5 mt-lg-0 text-center text-lg-start">
+            <span class="cyber-tagline">Gateway to your augmented workflow</span>
+            <h1 class="cyber-title">
+              A window of coming enhancements
             </h1>
-            <h3
-              class="h4 mb-4"
-              style="color: var(--secondary-color); font-weight: 500"
-            >
-              Saya seorang <span class="typing-text" id="typewriter"></span>
-            </h3>
-            <p class="hero-description mx-auto mx-lg-0">
-              Junior Full-Stack Developer dengan <strong>2 Sertifikasi BNSP</strong> dan
-              <strong>7 proyek shipped</strong>. Menggunakan AI sebagai <em>force multiplier</em> —
-              bukan pengganti skill — untuk deliver solusi web <em>production-ready</em> lebih cepat.
-              Founder <strong>HANSCO Digital</strong>, creative &amp; tech agency berbasis Jakarta.
+            <p class="cyber-desc">
+              A future where carbon fiber, Laravel, and human instinct align.
+              Not machine. Not human. Something wonderfully poised between.
             </p>
-
-            <div
-              class="d-flex gap-3 justify-content-center justify-content-lg-start hero-buttons-wrapper"
-            >
-              <a href="#contact" class="btn btn-custom-primary shadow-lg">
-                Hubungi Saya <i class="fas fa-paper-plane ms-2"></i>
-              </a>
-              <a
-                href="assets/CvAtsKevinAdisurya.pdf"
-                class="btn btn-custom-outline"
-                download="CV_Kevin_Adisurya_Nugraha.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Unduh CV Kevin Adisurya Nugraha"
-              >
-                <i class="fas fa-download me-2"></i>Unduh CV
-              </a>
-            </div>
-
-            <!-- Stats / Tech Stack Mini -->
-            <div class="hero-tech-strip mt-5">
-              <div class="hero-tech-card">
-                <div
-                  class="hero-tech-icon"
-                  style="background: #eff6ff; color: #2563eb"
-                >
-                  <i class="fas fa-code"></i>
-                </div>
-                <div class="hero-tech-info">
-                  <span class="hero-tech-name">Web Developer</span>
-                  <span class="hero-tech-level">INTERMEDIATE</span>
-                </div>
-              </div>
-
-              <div class="hero-tech-divider"></div>
-
-              <div class="hero-tech-card">
-                <div
-                  class="hero-tech-icon"
-                  style="background: #fdf4ff; color: #a855f7"
-                >
-                  <i class="fas fa-brain"></i>
-                </div>
-                <div class="hero-tech-info">
-                  <span class="hero-tech-name">AI Antusias</span>
-                  <span class="hero-tech-level">Enthusiast</span>
-                </div>
-              </div>
-
-              <div class="hero-tech-divider"></div>
-
-              <div class="hero-tech-card">
-                <div
-                  class="hero-tech-icon"
-                  style="background: #fff7ed; color: #f97316"
-                >
-                  <i class="fas fa-pen-nib"></i>
-                </div>
-                <div class="hero-tech-info">
-                  <span class="hero-tech-name">UI/UX Design</span>
-                  <span class="hero-tech-level">Creative</span>
-                </div>
-              </div>
+            <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+              <a href="#contact" class="btn-cyber-primary">Reserve Now</a>
+              <a href="#portfolio" class="btn-cyber-secondary">Explore Works</a>
             </div>
           </div>
 
-          <!-- Image Column (3D Composition) -->
-          <div class="col-lg-5 text-center">
-            <div class="hero-visual">
-              <div class="hero-img-wrapper">
-                <!-- Cursor Photo Reveal -->
-                <div class="photo-reveal-container" id="photoReveal">
-                  <!-- Layer bottom: AI version (2.png) -->
-                  <img
-                    src="assets/image/2.png"
-                    alt="Kevin AI Version"
-                    class="photo-layer photo-bot"
-                    draggable="false"
-                    id="photoBot"
-                  />
-                  <!-- Layer top: Real Kevin (1.png) — masked at cursor -->
-                  <img
-                    src="assets/image/1.png"
-                    alt="Kevin Adisurya"
-                    class="photo-layer photo-top"
-                    id="photoTop"
-                    draggable="false"
-                  />
-                  <!-- Hint badge -->
-                  <div class="reveal-hint" id="revealHint">
-                    <i class="fas fa-magic"></i> Hover me!
-                  </div>
-                </div>
+          <!-- Image Column with HUD Overlay -->
+          <div class="col-lg-6 d-flex justify-content-center align-items-center position-relative">
+            <div class="hud-container">
+              <!-- HUD Circles -->
+              <div class="hud-circle circle-1">
+                <span class="hud-label label-1">10+ YEARS REAL</span>
+              </div>
+              <div class="hud-circle circle-2">
+                <span class="hud-label label-2">40+ USE FORMS</span>
+              </div>
+              <div class="hud-circle circle-3">
+                <span class="hud-label label-3">95% REPEAT MEMBERS</span>
+              </div>
 
-                <!-- Floating Elements -->
-                <!-- Icon 1: Laravel -->
-                <div class="floating-icon icon-laravel">
-                  <i class="fab fa-laravel"></i>
-                </div>
-                <!-- Icon 2: PHP -->
-                <div class="floating-icon icon-php">
-                  <i class="fab fa-php"></i>
-                </div>
-                <!-- Icon 3: Code -->
-                <div class="floating-icon icon-code">
-                  <i class="fas fa-code"></i>
-                </div>
-
-                <!-- Floating Card: Certified -->
-                <div class="floating-card cert">
-                  <div class="icon-box">
-                    <i class="fas fa-certificate"></i>
-                  </div>
-                  <div class="text-start">
-                    <h6 class="mb-0 fw-bold">BNSP Certified</h6>
-                    <small class="text-muted">Web Programming</small>
-                  </div>
+              <!-- Cursor Photo Reveal Container -->
+              <div class="photo-reveal-container" id="photoReveal">
+                <!-- Layer bottom: AI version (2.png) -->
+                <img
+                  src="assets/image/2.png"
+                  alt="Kevin AI Version"
+                  class="photo-layer photo-bot"
+                  draggable="false"
+                  id="photoBot"
+                />
+                <!-- Layer top: Real Kevin (1.png) — masked at cursor -->
+                <img
+                  src="assets/image/1.png"
+                  alt="Kevin Adisurya"
+                  class="photo-layer photo-top"
+                  id="photoTop"
+                  draggable="false"
+                />
+                <!-- Hint badge -->
+                <div class="reveal-hint" id="revealHint">
+                  <i class="fas fa-magic"></i> Hover me!
                 </div>
               </div>
             </div>
@@ -296,6 +206,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- About Section -->
     <section id="about" class="section-padding bg-section-alt">
